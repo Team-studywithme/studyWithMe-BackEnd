@@ -4,26 +4,22 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "img")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Img {
+public class Img extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "img_list_id")
-    private Img_List img_list;
+    private ImgList imglist;
 
     @Column(nullable = false)
     private int size;
@@ -31,20 +27,8 @@ public class Img {
     @Column(nullable = false)
     private String url;
 
-    @CreationTimestamp
-    private LocalDateTime created_date = LocalDateTime.now();
-
-    @UpdateTimestamp
-    private LocalDateTime modified_date = LocalDateTime.now();
-
-    @Column(nullable = false)
-    @ColumnDefault("1")
-    private int active;
-
     @Builder
-    public Img(Long id, Img_List img_list, int size, String url){
-        this.id = id;
-        this.img_list = img_list;
+    public Img(ImgList img_list, int size, String url){
         this.size = size;
         this.url = url;
     }

@@ -4,24 +4,19 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "post")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Post {
+public class Post extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 
@@ -35,19 +30,8 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @CreationTimestamp
-    private LocalDateTime created_date = LocalDateTime.now();
-
-    @UpdateTimestamp
-    private LocalDateTime modified_date = LocalDateTime.now();
-
-    @Column(nullable = false)
-    @ColumnDefault("1")
-    private int active;
-
     @Builder
-    public Post(Long id, Avatar avatar, Board board, String title, String content){
-        this.id = id;
+    public Post(Avatar avatar, Board board, String title, String content){
         this.avatar = avatar;
         this.board = board;
         this.title = title;
