@@ -1,4 +1,4 @@
-package team.springwithme.domain.entity;
+package team.studywithme.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,26 +10,31 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Location extends BaseEntity{
+public class Post extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 
-    @Column(nullable = false)
-    private Double longitude;
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Column(nullable = false)
-    private Double latitude;
+    private String title;
+
+    @Column(nullable = false)
+    private String content;
 
     @Builder
-    public Location(Avatar avatar, Double longitude, Double latitude){
+    public Post(Avatar avatar, Board board, String title, String content){
         this.avatar = avatar;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.board = board;
+        this.title = title;
+        this.content = content;
     }
 }

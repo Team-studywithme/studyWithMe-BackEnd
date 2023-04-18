@@ -1,4 +1,4 @@
-package team.springwithme.domain.entity;
+package team.studywithme.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -6,33 +6,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "friend_list")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Timer extends BaseEntity{
+public class Friend_List extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "avatar_id")
-    private Avatar avatar;
+    private Avatar my_id;
 
     @Column(nullable = false)
-    private LocalDateTime start_time;
+    private Long friend_id;
 
     @Column(nullable = false)
-    private LocalDateTime end_time;
-
-    @Column(nullable = true)
-    private LocalDateTime study_time;
+    private int accept;
 
     @Builder
-    public Timer(Long id, Avatar avatar){
+    public Friend_List(Long id, Avatar my_id, Long friend_id, int accept) {
         this.id = id;
-        this.avatar = avatar;
-
+        this.my_id = my_id;
+        this.friend_id = friend_id;
+        this.accept = accept;
     }
 }

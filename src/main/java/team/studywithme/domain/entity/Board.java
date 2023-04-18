@@ -1,4 +1,4 @@
-package team.springwithme.domain.entity;
+package team.studywithme.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,19 +8,20 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "board")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Avatar extends BaseEntity{
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String nickname;
+    @Column
+    private String name;
 
     @Builder
-    public Avatar(String nickname){
-        this.nickname = nickname;
+    public Board(String name){
+        this.name = name;
     }
 }
