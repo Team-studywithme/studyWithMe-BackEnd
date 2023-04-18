@@ -1,4 +1,4 @@
-package team.springwithme.domain.entity;
+package team.studywithme.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

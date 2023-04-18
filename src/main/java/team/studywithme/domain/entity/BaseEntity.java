@@ -1,4 +1,4 @@
-package team.springwithme.domain.entity;
+package team.studywithme.domain.entity;
 
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
