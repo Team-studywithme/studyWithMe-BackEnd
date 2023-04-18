@@ -17,6 +17,10 @@ spring:
     console:
       enabled: true
 
+  profiles:
+    include:
+      - security
+
 #p6spy 설정
 decorator:
   datasource:
