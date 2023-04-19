@@ -1,6 +1,7 @@
 package team.studywithme.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 import team.studywithme.api.controller.dto.Response.KakaoLoginResponse;
@@ -11,7 +12,7 @@ import team.studywithme.utils.KakaoLoginUtils;
 
 import javax.transaction.Transactional;
 
-
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class AccountService {
         KakaoUserInfoDto kakaoUserInfo = kakaoLoginUtils.getKakaoUserInfo(code);
 
         Account account = accountRepository.findAccountById(kakaoUserInfo.getKakaoServerId());
-
+        log.info("kakaoUserInfo serverId : {} ",kakaoUserInfo.getKakaoServerId());
         // 서비스 등록 회원이 아니라면 회원가입
         if(account == null) {
             Avatar avatar = avatarService.save(kakaoUserInfo.getNickname());

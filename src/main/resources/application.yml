@@ -4,6 +4,11 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: embedded
+      table-name: session
 
   jpa:
     database: h2
@@ -26,3 +31,8 @@ decorator:
   datasource:
     p6spy:
       enable-logging: true
+
+server:
+  servlet:
+    session:
+      timeout: 36000

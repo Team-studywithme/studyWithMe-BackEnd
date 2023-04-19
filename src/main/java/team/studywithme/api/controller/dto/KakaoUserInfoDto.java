@@ -11,9 +11,9 @@ public class KakaoUserInfoDto {
 
     private String nickname;
 
-    public KakaoUserInfoDto(String kakaoServerId, String email, String nickname) {
+    public KakaoUserInfoDto(String kakaoServerId, String email) {
         this.kakaoServerId = kakaoServerId;
         this.email = email;
-        this.nickname = nickname;
+        this.nickname = "테스트 닉네임";
     }
 }
