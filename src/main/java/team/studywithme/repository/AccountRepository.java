@@ -8,6 +8,7 @@ import team.studywithme.domain.entity.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    @Query("select a from Account a where a.email = :email and a.active = 1")
-    Account findAccountByEmail(@Param("email") String email);
+
+    @Query("select ac from Account ac where ac.id = :id and ac.active = 1")
+    Account findAccountById(@Param("id") String id);
 }

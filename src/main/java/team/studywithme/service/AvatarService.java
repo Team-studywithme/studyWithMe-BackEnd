@@ -10,9 +10,8 @@ import team.studywithme.repository.AvatarRepository;
 public class AvatarService {
     private final AvatarRepository avatarRepository;
 
-    public Avatar saveByNickname(String nickname) {
+    public Avatar save(String nickname) {
         Avatar avatar = new Avatar(nickname);
-
         return avatarRepository.save(avatar);
     }
 }
