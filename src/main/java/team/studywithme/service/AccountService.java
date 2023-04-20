@@ -8,7 +8,7 @@ import team.studywithme.api.controller.dto.response.KakaoLoginResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
-import team.studywithme.utils.KakaoLoginUtils;
+import team.studywithme.utils.kakao.KakaoLoginUtils;
 
 import javax.transaction.Transactional;
 

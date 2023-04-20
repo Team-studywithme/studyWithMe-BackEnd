@@ -1,11 +1,13 @@
 package team.studywithme.api.controller.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team.studywithme.domain.entity.Avatar;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class KakaoLoginResponse {
     private Long avatarID;
 
@@ -17,4 +19,6 @@ public class KakaoLoginResponse {
 
         return this;
     }
+
+
 }
