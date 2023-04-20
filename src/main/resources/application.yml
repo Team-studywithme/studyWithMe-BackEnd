@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:studywithme;Mode=MYSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: embedded
+      table-name: session
+
+  jpa:
+    database: h2
+    properties:
+      hibernate:
+        ddl-auto: create
+        show_sql: true
+        format_sql: false
+
+  h2:
+    console:
+      enabled: true
+
+  profiles:
+    include:
+      - security
+
+#p6spy 설정
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+server:
+  servlet:
+    session:
+      timeout: 36000
