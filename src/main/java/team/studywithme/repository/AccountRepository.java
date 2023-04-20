@@ -9,6 +9,6 @@ import team.studywithme.domain.entity.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    @Query("select ac from Account ac where ac.id = :id and ac.active = 1")
+    @Query("select ac from Account ac where ac.id = :id")
     Account findAccountById(@Param("id") String id);
 }

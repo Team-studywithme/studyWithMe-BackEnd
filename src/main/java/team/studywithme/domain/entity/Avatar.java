@@ -19,6 +19,10 @@ public class Avatar extends BaseEntity{
     @Column(nullable = false)
     private String nickname;
 
+    public void setNickname(String nickname){
+        this.nickname = nickname;
+    }
+
     @Builder
     public Avatar(String nickname){
         this.nickname = nickname;

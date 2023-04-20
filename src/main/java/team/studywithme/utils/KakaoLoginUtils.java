@@ -15,6 +15,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
+import team.studywithme.utils.session.SessionUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -27,6 +31,8 @@ public class KakaoLoginUtils {
     public KakaoUserInfoDto getKakaoUserInfo(String code) {
         String accessToken = getAccessToken(code);
         String userInfo = getUserInfo(accessToken);
+        expireAccessToken(accessToken);
+
         try {
             return strToUserDtoObj(userInfo);
         } catch (JsonProcessingException e) {
@@ -36,13 +42,27 @@ public class KakaoLoginUtils {
 
     private KakaoUserInfoDto strToUserDtoObj(String userInfo) throws JsonProcessingException {
         JsonNode jsonNode = objectMapper.readTree(userInfo);
-        String id = String.valueOf(jsonNode.get("id"));;
+        String id = String.valueOf(jsonNode.get("id"));
         String userEmailJsonValue = String.valueOf(jsonNode.get("kakao_account").get("email"));
         String userEmail = userEmailJsonValue.substring(1, userEmailJsonValue.length() - 1);
 
         log.info("데이터 불러오기 완료 : {}",id);
 
         return new KakaoUserInfoDto(id, userEmail);
+    }
+
+    private void expireAccessToken(String accessToken){
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
+
+        restTemplate.postForObject(kakaoAuthorizationInfo.getUserLogoutToken(), request, String.class);
     }
 
     private String getUserInfo(String accessToken) {

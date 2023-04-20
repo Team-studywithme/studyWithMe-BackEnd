@@ -21,7 +21,7 @@ public class SessionArgumentResolver implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         return session.getAttribute("session");
     }
 }

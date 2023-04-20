@@ -25,4 +25,6 @@ public class KakaoAuthorizationInfo {
     @Value("${provider.user-info-uri}")
     private String userInfoUri;
 
+    @Value("${provider.user-logout-token}")
+    private String userLogoutToken;
 }
