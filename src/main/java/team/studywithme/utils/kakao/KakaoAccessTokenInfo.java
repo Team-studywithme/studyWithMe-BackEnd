@@ -1,4 +1,4 @@
-package team.studywithme.utils;
+package team.studywithme.utils.kakao;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package team.studywithme.utils;
+package team.studywithme.utils.kakao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
