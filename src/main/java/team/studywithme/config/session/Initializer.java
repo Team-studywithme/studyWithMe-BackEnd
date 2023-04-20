@@ -1,4 +1,4 @@
-package team.studywithme.config.sessionconfig;
+package team.studywithme.config.session;
 
 import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
 

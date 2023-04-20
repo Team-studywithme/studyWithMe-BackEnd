@@ -1,4 +1,4 @@
-package team.studywithme.config.sessionconfig;
+package team.studywithme.config.session;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
