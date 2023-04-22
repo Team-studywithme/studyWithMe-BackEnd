@@ -15,17 +15,13 @@ jobs:
     - uses: actions/checkout@v3
       with:
         clean: false
+
     - name: kill old server
       run : |
-        killall -9 java || true    
-    - name: permission for gradlew
-      run : chmod +x ./gradlew
+        killall -9 java || true   
 
-    - name: gradle build
-      run : |
-        ./gradlew clean build -x test
     - name: exec
       env:
         RUNNER_TRACKING_ID: ""
       run:
-        nohup java -jar build/libs/springwithme-0.0.1-SNAPSHOT.jar &
+        bash ./bash/start.sh

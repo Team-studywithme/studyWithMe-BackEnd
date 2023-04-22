@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "friend_list")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Friend_List extends BaseEntity {
+public class FriendList extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,7 @@ public class Friend_List extends BaseEntity {
     private int accept;
 
     @Builder
-    public Friend_List(Long id, Avatar my_id, Long friend_id, int accept) {
-        this.id = id;
+    public FriendList(Avatar my_id, Long friend_id, int accept) {
         this.my_id = my_id;
         this.friend_id = friend_id;
         this.accept = accept;
