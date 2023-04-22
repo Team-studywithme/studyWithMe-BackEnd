@@ -20,7 +20,7 @@ public class Post extends BaseEntity{
     @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
 

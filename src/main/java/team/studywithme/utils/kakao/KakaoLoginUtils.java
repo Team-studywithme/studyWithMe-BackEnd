@@ -27,6 +27,7 @@ public class KakaoLoginUtils {
     public KakaoUserInfoDto getKakaoUserInfo(String code) {
         String accessToken = getAccessToken(code);
         String userInfo = getUserInfo(accessToken);
+        expireToken(accessToken);
         try {
             return strToUserDtoObj(userInfo);
         } catch (JsonProcessingException e) {
@@ -61,6 +62,24 @@ public class KakaoLoginUtils {
         }catch(HttpClientErrorException e){
             log.info("many request to kakao server");
             return null;
+        }
+    }
+
+    private void expireToken(String accessToken) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
+
+        try {
+            restTemplate.postForObject(kakaoAuthorizationInfo.getToken_remove_uri(), request, String.class);
+        }catch(HttpClientErrorException e){
+            log.info("many request to kakao server");
         }
     }
 

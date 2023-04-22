@@ -26,7 +26,7 @@ public class AccountApiController {
     @GetMapping("/kakao")
     public ResponseEntity<KakaoLoginResponse> studyLogin(@RequestParam String code, HttpSession httpSession){
         KakaoLoginResponse kakaoLoginResponse = accountService.kakaoLogin(code);
-        sessionUtils.createSession(kakaoLoginResponse.getNickname(), httpSession);
+        sessionUtils.createSession(kakaoLoginResponse, httpSession);
 
         return ResponseEntity.ok(kakaoLoginResponse);
     }
