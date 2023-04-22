@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/project
     username: root #do not touch username
-    password:      #do not touch poassword
+    password: root #do not touch poassword
     driver-class-name: org.mariadb.jdbc.Driver
 
   session:
