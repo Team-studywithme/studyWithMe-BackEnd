@@ -28,4 +28,6 @@ public class KakaoAuthorizationInfo {
     @Value("${provider.user-info-uri}")
     private String userInfoUri;
 
+    @Value("${provider.token-remove-uri}")
+    private String token_remove_uri;
 }
