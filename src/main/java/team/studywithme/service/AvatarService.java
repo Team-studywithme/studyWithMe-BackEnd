@@ -3,9 +3,14 @@ package team.studywithme.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import team.studywithme.domain.entity.Avatar;
+import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +51,22 @@ public class AvatarService {
         Avatar avatar = avatarOptional.get();
         avatar.deActive();
         avatarRepository.save(avatar);
+    }
+
+    public HashMap<Long, String> findByPostList(List<Post> postList){
+        Set<Long> idSet = postList.stream().map(post -> post.getAvatar().getId()).collect(Collectors.toSet());
+        List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
+
+        return ListToHashMapForNickname(avatarList);
+    }
+
+    public HashMap<Long, String> ListToHashMapForNickname(List<Avatar> avatarList){
+        HashMap<Long, String> hashMap = new HashMap<>();
+
+        for(Avatar avatar : avatarList){
+            hashMap.put(avatar.getId(), avatar.getNickname());
+        }
+
+        return hashMap;
     }
 }
