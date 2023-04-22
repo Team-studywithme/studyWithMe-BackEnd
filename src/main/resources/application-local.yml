@@ -23,6 +23,12 @@ spring:
     console:
       enabled: true
 
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+      data-locations: classpath:sql/data.sql
+
   kakao:
     id: ${SECRET}
 server:
