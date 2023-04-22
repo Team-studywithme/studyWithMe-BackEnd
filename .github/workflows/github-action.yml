@@ -2,26 +2,27 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main"]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        clean: false
+      - uses: actions/checkout@v3
+        with:
+          clean: false
 
-    - name: kill old server
-      run : |
-        killall -9 java || true   
+      - name: kill old server
+        run : |
+          killall -9 java || true   
 
-    - name: exec
-      env:
-        RUNNER_TRACKING_ID: ""
-      run:
-        bash ./bash/start.sh
+      - name: exec
+        env:
+          RUNNER_TRACKING_ID: ""
+        run: |
+          pwd
+          cd bash
+          bash ./start.sh

@@ -8,4 +8,4 @@ chmod +x ./gradlew
 
 cd build/libs
 
-nohup java -jar `Dspring.kakao.id=$SECRET` studywithme-0.0.1-SNAPSHOT.jar &
+nohup java -jar `Dspring.kakao.id=${SECRET}` studywithme-0.0.1-SNAPSHOT.jar &

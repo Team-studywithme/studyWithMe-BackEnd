@@ -18,9 +18,8 @@ spring:
         ddl-auto: create
         show_sql: false
         format_sql: false
-    show-sql: true
+    show-sql: false
     open-in-view: false
-    generate-ddl: true
 
   kakao:
     id: ${SECRET}
