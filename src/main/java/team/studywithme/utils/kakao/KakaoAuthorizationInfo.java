@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 @PropertySources({
-        @PropertySource(name = "kakaoinfo" ,value = "classpath:kakaosecuritykey.yml")
+        @PropertySource(name = "kakaoinfo" ,value = "classpath:application-security.yml")
 })
 public class KakaoAuthorizationInfo {
 
