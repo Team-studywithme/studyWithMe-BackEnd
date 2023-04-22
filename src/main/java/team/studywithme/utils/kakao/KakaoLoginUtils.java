@@ -71,7 +71,9 @@ public class KakaoLoginUtils {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", kakaoAuthorizationInfo.getAuthorizationGrantType());
+        log.info("kakao auth : {}",kakaoAuthorizationInfo.getAuthorizationGrantType());
         params.add("client_id", kakaoAuthorizationInfo.getClientId());
+        log.info("kaka auth : {}",kakaoAuthorizationInfo.getClientId());
         params.add("redirect_uri", kakaoAuthorizationInfo.getRedirectUri());
         params.add("code", code);
 

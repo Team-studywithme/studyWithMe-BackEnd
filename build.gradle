@@ -82,4 +82,12 @@ configurations {
 	querydsl.extendsFrom compileClasspath
 }
 
+bootRun{
+	String activeProfile = System.properties['spring.profiles.active']
+	systemProperty "spring.profiles.active", activeProfile
+
+	String secret = System.properties['spring.kakao.id']
+	systemProperty "spring.kakao.id", secret
+}
+
 

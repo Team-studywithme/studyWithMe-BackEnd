@@ -3,14 +3,17 @@ package team.studywithme.utils.kakao;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-@PropertySource("classpath:application-security.yml")
+@PropertySources({
+        @PropertySource(name = "kakaoinfo" ,value = "classpath:kakaosecuritykey.yml")
+})
 public class KakaoAuthorizationInfo {
 
-    @Value("${registration.client-id}")
+    @Value("${spring.kakao.id}")
     private String clientId;
 
     @Value("${registration.redirect-uri}")
