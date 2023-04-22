@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 @Component
 public class SessionUtils {
 
-    public void createSession(KakaoLoginResponse sessionValue, HttpSession httpSession){
-        httpSession.setAttribute("session",sessionValue);
+    public void createSession(String value , HttpSession httpSession){
+        httpSession.setAttribute("session",value);
         httpSession.setMaxInactiveInterval(3600);
     }
 }
