@@ -14,4 +14,8 @@ public interface AvatarRepository extends JpaRepository<Avatar, Long> {
 
     @Query("select av from Avatar av where av.id in :idList")
     List<Avatar> findByIdList(@Param("idList") Set<Long> idSet);
+
+    @Query("select av from Avatar av " +
+            "where id = :id")
+    Avatar findAvatarById(@Param("id") Long id);
 }
