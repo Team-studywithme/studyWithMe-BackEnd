@@ -8,26 +8,18 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-@PropertySources({
-        @PropertySource(name = "kakaoinfo" ,value = "classpath:application-security.yml")
-})
 public class KakaoAuthorizationInfo {
 
     @Value("${spring.kakao.id}")
     private String clientId;
 
-    @Value("${registration.redirect-uri}")
-    private String redirectUri;
+    private final String redirectUri = "https://kauth.kakao.com/oauth/authorize";
 
-    @Value("${registration.authorization-grant-type}")
-    private String authorizationGrantType;
+    private final String authorizationGrantType = "authorization_code";
 
-    @Value("${provider.token-uri}")
-    private String tokenUri;
+    private String tokenUri = "https://kauth.kakao.com/oauth/token";
 
-    @Value("${provider.user-info-uri}")
-    private String userInfoUri;
+    private String userInfoUri = "https://kapi.kakao.com/v2/user/me";
 
-    @Value("${provider.token-remove-uri}")
-    private String token_remove_uri;
+    private String token_remove_uri = "https://kapi.kakao.com/v1/user/logout";
 }
