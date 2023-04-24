@@ -12,21 +12,19 @@ spring:
       table-name: session
 
   jpa:
+    database: mysql
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     properties:
       hibernate:
         ddl-auto: create
         show_sql: false
         format_sql: false
+        dialect: org.hibernate.dialect.MariaDB103Dialect
     show-sql: false
     open-in-view: false
 
   kakao:
     id: ${SECRET}
-
-  profiles:
-    include:
-      - security
 
 server:
   servlet:

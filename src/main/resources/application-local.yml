@@ -18,6 +18,9 @@ spring:
         ddl-auto: create
         show_sql: true
         format_sql: false
+        dialect: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+
 
   h2:
     console:
@@ -31,7 +34,14 @@ spring:
 
   kakao:
     id: ${SECRET}
+
+
 server:
   servlet:
     session:
       timeout: 36000
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
