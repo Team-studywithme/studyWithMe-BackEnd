@@ -7,9 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import team.studywithme.api.controller.dto.response.KakaoLoginResponse;
 import team.studywithme.api.controller.dto.response.KakaoLogoutResponse;
-import team.studywithme.config.session.Session;
+import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.AccountService;
 import team.studywithme.utils.session.SessionUtils;
 
@@ -24,15 +23,16 @@ public class AccountApiController {
     private final SessionUtils sessionUtils;
 
     @GetMapping("/kakao")
-    public ResponseEntity<KakaoLoginResponse> studyLogin(@RequestParam String code, HttpSession httpSession){
-        KakaoLoginResponse kakaoLoginResponse = accountService.kakaoLogin(code);
-        sessionUtils.createSession(kakaoLoginResponse, httpSession);
+    public ResponseEntity<?> studyLogin(@RequestParam String code, HttpSession httpSession){
+//        Long avatarID = accountService.kakaoLogin(code);
+        Long avatarID = (long) code.length();
+        sessionUtils.createSession(avatarID, httpSession);
 
-        return ResponseEntity.ok(kakaoLoginResponse);
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<KakaoLogoutResponse> logout(HttpSession session){
+    public ResponseEntity<KakaoLogoutResponse> logout(@LoginAvatarId HttpSession session){
 
         if(session != null){
             session.invalidate();

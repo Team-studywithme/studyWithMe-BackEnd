@@ -11,6 +11,7 @@ import team.studywithme.repository.AccountRepository;
 import team.studywithme.utils.kakao.KakaoLoginUtils;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -22,7 +23,7 @@ public class AccountService {
     private final AvatarService avatarService;
     private final KakaoLoginUtils kakaoLoginUtils;
 
-    public KakaoLoginResponse kakaoLogin(String code){
+    public Long kakaoLogin(String code){
         KakaoUserInfoDto kakaoUserInfo = kakaoLoginUtils.getKakaoUserInfo(code);
 
         Account account = accountRepository.findAccountById(kakaoUserInfo.getKakaoServerId());
