@@ -101,8 +101,7 @@ public class KakaoLoginUtils {
         try {
             ResponseEntity<String> response = restTemplate.postForEntity(kakaoAuthorizationInfo.getTokenUri(), request, String.class);
             JsonNode jsonNode = objectMapper.readTree(response.getBody());
-            String token = String.valueOf(jsonNode.get("access_token"));
-            return token;
+            return String.valueOf(jsonNode.get("access_token"));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         } catch (HttpClientErrorException e){
