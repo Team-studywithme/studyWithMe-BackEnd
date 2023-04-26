@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,7 @@ public class AccountApiController {
 
     @GetMapping("/kakao")
     public ResponseEntity<?> studyLogin(@RequestParam String code, HttpSession httpSession){
-//        Long avatarID = accountService.kakaoLogin(code);
-        Long avatarID = (long) code.length();
+        Long avatarID = accountService.kakaoLogin(code);
         sessionUtils.createSession(avatarID, httpSession);
 
         return ResponseEntity.ok(null);
@@ -39,5 +39,14 @@ public class AccountApiController {
         }
 
         return ResponseEntity.ok(new KakaoLogoutResponse());
+    }
+
+    @DeleteMapping("/account/delete")
+    public ResponseEntity<?> delete(@LoginAvatarId Long avatarId){
+        if(avatarId == null){ return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); }
+
+        accountService.delete(avatarId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

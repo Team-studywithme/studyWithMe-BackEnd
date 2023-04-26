@@ -3,19 +3,16 @@ package team.studywithme.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
-import team.studywithme.api.controller.dto.response.KakaoLoginResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
 import team.studywithme.utils.kakao.KakaoLoginUtils;
 
-import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class AccountService {
 
@@ -50,6 +47,15 @@ public class AccountService {
         }
         avatar = account.getAvatar();
 
-        return new KakaoLoginResponse().AvatarToKakaoLoginResponse(avatar);
+        return avatar.getId();
+    }
+
+    @Transactional
+    public void delete(Long avatarID){
+        avatarService.delete(avatarID);
+
+        Account account = accountRepository.findAccountByAvatarID(avatarID);
+
+        account.deActive();
     }
 }

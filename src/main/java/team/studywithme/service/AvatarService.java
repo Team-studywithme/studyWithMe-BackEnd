@@ -2,13 +2,13 @@ package team.studywithme.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,6 +22,7 @@ public class AvatarService {
         return avatarRepository.save(avatar);
     }
 
+    @Transactional
     public Avatar saveGiveDeActiveAvatar(Avatar avatar) {
         avatar.onActive();
         // create At 처리로직
@@ -29,28 +30,20 @@ public class AvatarService {
         return avatarRepository.save(avatar);
     }
 
-    public Avatar update(Long avatarID, String nickname){
-        Optional<Avatar> avatarOptional = avatarRepository.findById(avatarID);
-
-        if(avatarOptional.isEmpty()){
-            return null;
+    @Transactional
+    public int update(Long avatarID, String nickname){
+        Avatar avatar = avatarRepository.findAvatarById(avatarID);
+        if(avatar == null){
+            return 0;
         }
 
-        Avatar avatar = avatarOptional.get();
-        avatar.setNickname(nickname);
-        return avatarRepository.save(avatar);
+        return avatarRepository.updateNickname(avatarID, nickname);
     }
 
     public void delete(Long avatarID){
-        Optional<Avatar> avatarOptional = avatarRepository.findById(avatarID);
+        Avatar avatar = avatarRepository.findAvatarById(avatarID);
 
-        if(avatarOptional.isEmpty()){
-            return;
-        }
-
-        Avatar avatar = avatarOptional.get();
         avatar.deActive();
-        avatarRepository.save(avatar);
     }
 
     public HashMap<Long, String> findByPostList(List<Post> postList){
