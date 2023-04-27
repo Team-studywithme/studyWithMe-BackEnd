@@ -32,7 +32,7 @@ public class AccountApiController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<KakaoLogoutResponse> logout(@LoginAvatarId HttpSession session){
+    public ResponseEntity<KakaoLogoutResponse> logout(HttpSession session){
 
         if(session != null){
             session.invalidate();
