@@ -3,6 +3,7 @@ package team.studywithme.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.response.BoardResponse;
 import team.studywithme.api.controller.dto.response.PostResponse;
 import team.studywithme.domain.entity.Board;
@@ -11,6 +12,7 @@ import team.studywithme.repository.BoardRepository;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BoardService {
 

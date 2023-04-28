@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AvatarService {
     private final AvatarRepository avatarRepository;
@@ -23,7 +24,6 @@ public class AvatarService {
         return avatarRepository.save(avatar);
     }
 
-    @Transactional
     public Avatar saveGiveDeActiveAvatar(Avatar avatar) {
         avatar.onActive();
         // create At 처리로직
@@ -31,7 +31,6 @@ public class AvatarService {
         return avatarRepository.save(avatar);
     }
 
-    @Transactional
     public int update(Long avatarID, String nickname){
         Avatar avatar = avatarRepository.findAvatarById(avatarID);
         if(avatar == null){

@@ -13,6 +13,7 @@ import team.studywithme.utils.kakao.KakaoLoginUtils;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AccountService {
 
@@ -50,7 +51,6 @@ public class AccountService {
         return avatar.getId();
     }
 
-    @Transactional
     public void delete(Long avatarID){
         avatarService.delete(avatarID);
 
