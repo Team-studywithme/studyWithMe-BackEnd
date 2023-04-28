@@ -13,7 +13,7 @@ import team.studywithme.repository.CommentRepository;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CommentService {
 

@@ -12,7 +12,7 @@ import team.studywithme.repository.BoardRepository;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BoardService {
 

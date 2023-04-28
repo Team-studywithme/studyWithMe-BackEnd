@@ -24,6 +24,6 @@ public class SessionArgumentResolver implements HandlerMethodArgumentResolver {
         HttpSession httpSession = request.getSession(false);
 
 
-        return (httpSession != null) ? httpSession.getAttribute("session") : null;
+        return httpSession.getAttribute("session");
     }
 }
