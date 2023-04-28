@@ -13,11 +13,11 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query(value = "select po from Post po " +
-            "where po.board.id = :boardID and active = 1 " +
+            "where po.board.id = :boardID and po.active = 1 " +
             "order by po.createdDate desc")
     List<Post> findPagePosts(Pageable pageable, @Param("boardID") Long boardID);
 
     @Query(value = "select po from Post po " +
-            "where po.id = :postID and active = 1")
+            "where po.id = :postID and po.active = 1")
     Post findPostById(@Param("postID") Long postID);
 }
