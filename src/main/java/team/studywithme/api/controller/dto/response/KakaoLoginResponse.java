@@ -9,12 +9,12 @@ import team.studywithme.domain.entity.Avatar;
 @NoArgsConstructor
 @AllArgsConstructor
 public class KakaoLoginResponse {
-    private Long avatarID;
+    private Long avatarId;
 
     private String nickname;
 
     public KakaoLoginResponse AvatarToKakaoLoginResponse(Avatar avatar){
-        this.avatarID = avatar.getId();
+        this.avatarId = avatar.getId();
         this.nickname = avatar.getNickname();
 
         return this;

@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import team.studywithme.api.controller.dto.response.KakaoLoginResponse;
 import team.studywithme.api.controller.dto.response.KakaoLogoutResponse;
-import team.studywithme.config.session.Session;
+import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.AccountService;
 import team.studywithme.utils.session.SessionUtils;
 
@@ -24,11 +24,11 @@ public class AccountApiController {
     private final SessionUtils sessionUtils;
 
     @GetMapping("/kakao")
-    public ResponseEntity<KakaoLoginResponse> studyLogin(@RequestParam String code, HttpSession httpSession){
-        KakaoLoginResponse kakaoLoginResponse = accountService.kakaoLogin(code);
-        sessionUtils.createSession(kakaoLoginResponse, httpSession);
+    public ResponseEntity studyLogin(@RequestParam String code, HttpSession httpSession){
+        Long avatarID = accountService.kakaoLogin(code);
+        sessionUtils.createSession(avatarID, httpSession);
 
-        return ResponseEntity.ok(kakaoLoginResponse);
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/logout")
@@ -39,5 +39,13 @@ public class AccountApiController {
         }
 
         return ResponseEntity.ok(new KakaoLogoutResponse());
+    }
+
+    @DeleteMapping("/account/delete")
+    public ResponseEntity delete(@LoginAvatarId Long avatarId){
+
+        accountService.delete(avatarId);
+
+        return ResponseEntity.ok(null);
     }
 }

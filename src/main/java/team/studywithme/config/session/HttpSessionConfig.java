@@ -2,17 +2,21 @@ package team.studywithme.config.session;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.session.MapSessionRepository;
-import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
-import java.util.concurrent.ConcurrentHashMap;
+import javax.sql.DataSource;
 
-@EnableSpringHttpSession
+@EnableJdbcHttpSession
 @Configuration(proxyBeanMethods = false)
 public class HttpSessionConfig {
 
     @Bean
-    public MapSessionRepository sessionRepository() {
-        return new MapSessionRepository(new ConcurrentHashMap<>());
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("org/springframework/session/jdbc/schema-h2.sql")
+                .build();
     }
 }

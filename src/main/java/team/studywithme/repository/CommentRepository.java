@@ -12,7 +12,7 @@ import team.studywithme.domain.entity.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(value = "select co from Comment co " +
-            "where co.post.id = :postID and active = 1 " +
+            "where co.post.id = :postID and co.active = 1 " +
             "order by co.createdDate desc")
     Slice<Comment> findSliceComments(Pageable pageable, @Param("postID") Long postID);
 }
