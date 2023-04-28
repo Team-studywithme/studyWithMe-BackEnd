@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.domain.entity.Avatar;
+import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
 
@@ -46,8 +47,21 @@ public class AvatarService {
         avatar.deActive();
     }
 
+    public Avatar findByPost(Post post){
+        Long avatarID = post.getAvatar().getId();
+
+        return avatarRepository.findAvatarById(avatarID);
+    }
+
     public HashMap<Long, String> findByPostList(List<Post> postList){
         Set<Long> idSet = postList.stream().map(post -> post.getAvatar().getId()).collect(Collectors.toSet());
+        List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
+
+        return ListToHashMapForNickname(avatarList);
+    }
+
+    public HashMap<Long, String> findByCommentList(List<Comment> commentList){
+        Set<Long> idSet = commentList.stream().map(comment -> comment.getAvatar().getId()).collect(Collectors.toSet());
         List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
 
         return ListToHashMapForNickname(avatarList);
