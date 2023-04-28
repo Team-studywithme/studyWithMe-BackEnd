@@ -18,7 +18,7 @@ public class BoardApiController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public ResponseEntity<?> board(@PageableDefault(page = 0, size = 10) Pageable pageable,
+    public ResponseEntity<BoardResponse> board(@PageableDefault(page = 0, size = 10) Pageable pageable,
                                    @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
         BoardResponse boardResponse = boardService.matchingBoard(pageable, boardName);

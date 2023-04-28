@@ -17,7 +17,6 @@ public class AvatarApiController {
 
     @PostMapping("/avatar/update")
     public ResponseEntity<?> update(@RequestBody GenericSingleRequest<String> genericSingleRequest, @LoginAvatarId Long avatarId){
-        if(avatarId == null){ return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); }
 
         int result = avatarService.update(avatarId, genericSingleRequest.getElement());
 

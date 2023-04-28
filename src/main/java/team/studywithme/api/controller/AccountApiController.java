@@ -24,7 +24,7 @@ public class AccountApiController {
     private final SessionUtils sessionUtils;
 
     @GetMapping("/kakao")
-    public ResponseEntity<?> studyLogin(@RequestParam String code, HttpSession httpSession){
+    public ResponseEntity studyLogin(@RequestParam String code, HttpSession httpSession){
         Long avatarID = accountService.kakaoLogin(code);
         sessionUtils.createSession(avatarID, httpSession);
 
@@ -42,11 +42,10 @@ public class AccountApiController {
     }
 
     @DeleteMapping("/account/delete")
-    public ResponseEntity<?> delete(@LoginAvatarId Long avatarId){
-        if(avatarId == null){ return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); }
+    public ResponseEntity delete(@LoginAvatarId Long avatarId){
 
         accountService.delete(avatarId);
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.ok(null);
     }
 }
