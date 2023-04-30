@@ -27,7 +27,7 @@ public class Location extends BaseEntity{
     private Double latitude;
 
     @Builder
-    public Location(Avatar avatar, Double longitude, Double latitude){
+    public Location(Avatar avatar, Double latitude, Double longitude){
         this.avatar = avatar;
         this.longitude = longitude;
         this.latitude = latitude;
