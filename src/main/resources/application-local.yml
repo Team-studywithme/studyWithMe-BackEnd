@@ -8,8 +8,8 @@ spring:
   session:
     store-type: jdbc
     jdbc:
-      initialize-schema: embedded
-      table-name: session
+      initialize-schema: always
+      table-name: SPRING_SESSION
 
   jpa:
     database: h2
