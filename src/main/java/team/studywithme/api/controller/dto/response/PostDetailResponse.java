@@ -1,6 +1,7 @@
 package team.studywithme.api.controller.dto.response;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team.studywithme.domain.entity.Avatar;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "nickname", "content", "commentDetailResponseList", "isNext"})
 public class PostDetailResponse {
 
 
