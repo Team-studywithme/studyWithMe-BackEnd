@@ -41,6 +41,7 @@ public class PostService {
                 avatarMap.get(post.getAvatar().getId()))).collect(Collectors.toList());
     }
 
+    @Transactional
     public PostDetailResponse detailPost(Pageable pageable, Long postID){
         Post post = postRepository.findPostById(postID);
         post.upHits();
