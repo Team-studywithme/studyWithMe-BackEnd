@@ -36,6 +36,7 @@ public class PostService {
         return postList.stream().map(post -> new PostResponse(
                 post.getId(),
                 post.getTitle(),
+                post.getHits(),
                 post.getCreatedDate(),
                 avatarMap.get(post.getAvatar().getId()))).collect(Collectors.toList());
     }

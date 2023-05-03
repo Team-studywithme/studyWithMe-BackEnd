@@ -13,6 +13,7 @@ public class PostResponse {
 
     private Long id;
     private String title;
+    private int hits;
     private LocalDateTime createdDate;
     private String nickname;
 }

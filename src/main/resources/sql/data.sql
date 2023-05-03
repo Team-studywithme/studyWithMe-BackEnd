@@ -12,17 +12,17 @@ INSERT INTO board(id, active, created_date, last_modified_date, name) values (nu
 
 
 ------------------------------ Post Data ------------------------------
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-11T13:37:49', '2023-04-11T13:37:49', 'content_example_1', 'title_example_1', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-12T11:07:41', '2023-04-12T11:07:41', 'content_example_2', 'title_example_2', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-13T11:17:45', '2023-04-13T11:17:45', 'content_example_3', 'title_example_3', 2, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-14T11:27:26', '2023-04-14T11:27:26', 'content_example_4', 'title_example_4', 2, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-15T11:25:19', '2023-04-15T11:25:19', 'content_example_5', 'title_example_5', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-16T11:43:18', '2023-04-16T11:43:18', 'content_example_6', 'title_example_6', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-17T11:24:24', '2023-04-17T11:24:24', 'content_example_7', 'title_example_7', 2, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-18T11:57:45', '2023-04-18T11:57:45', 'content_example_8', 'title_example_8', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-19T11:07:16', '2023-04-19T11:07:16', 'content_example_9', 'title_example_9', 2, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-20T11:24:37', '2023-04-20T11:24:37', 'content_example_10', 'title_example_10', 1, 1)
-INSERT INTO post(id, active, created_date, last_modified_date, content, title, avatar_id, board_id) values (null, 1, '2023-04-20T11:52:31', '2023-04-20T11:52:31', 'content_example_11', 'title_example_11', 2, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-11T13:37:49', '2023-04-11T13:37:49', 'content_example_1', 0, 'title_example_1', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-12T11:07:41', '2023-04-12T11:07:41', 'content_example_2', 0, 'title_example_2', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-13T11:17:45', '2023-04-13T11:17:45', 'content_example_3', 0, 'title_example_3', 2, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-14T11:27:26', '2023-04-14T11:27:26', 'content_example_4', 0, 'title_example_4', 2, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-15T11:25:19', '2023-04-15T11:25:19', 'content_example_5', 0, 'title_example_5', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-16T11:43:18', '2023-04-16T11:43:18', 'content_example_6', 0, 'title_example_6', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-17T11:24:24', '2023-04-17T11:24:24', 'content_example_7', 0, 'title_example_7', 2, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-18T11:57:45', '2023-04-18T11:57:45', 'content_example_8', 0, 'title_example_8', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-19T11:07:16', '2023-04-19T11:07:16', 'content_example_9', 0, 'title_example_9', 2, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-20T11:24:37', '2023-04-20T11:24:37', 'content_example_10', 0, 'title_example_10', 1, 1)
+INSERT INTO post(id, active, created_date, last_modified_date, content, hits, title, avatar_id, board_id) values (null, 1, '2023-04-20T11:52:31', '2023-04-20T11:52:31', 'content_example_11', 0, 'title_example_11', 2, 1)
 
 
 ------------------------------ Comment Data ------------------------------
