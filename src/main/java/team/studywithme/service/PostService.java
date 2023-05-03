@@ -39,6 +39,7 @@ public class PostService {
 
     public PostDetailResponse detailPost(Pageable pageable, Long postID){
         Post post = postRepository.findPostById(postID);
+        post.upHits();
 
         Avatar avatar = avatarService.findByPost(post);
 

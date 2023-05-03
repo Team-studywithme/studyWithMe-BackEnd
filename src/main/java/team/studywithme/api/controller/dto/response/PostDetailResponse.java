@@ -3,9 +3,7 @@ package team.studywithme.api.controller.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Slice;
 import team.studywithme.domain.entity.Avatar;
-import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
 
 import java.time.LocalDateTime;
@@ -22,6 +20,7 @@ public class PostDetailResponse {
     private LocalDateTime createdDate;
     private String nickname;
     private String content;
+    private int hits;
     private List<CommentDetailResponse> commentDetailResponseList;
     private boolean isNext;
 
@@ -29,6 +28,7 @@ public class PostDetailResponse {
         this.id = post.getId();
         this.title = post.getTitle();
         this.createdDate = post.getCreatedDate();
+        this.hits = post.getHits();
         this.nickname = avatar.getNickname();
         this.content = post.getContent();
         this.commentDetailResponseList = commentDetailResponseList;

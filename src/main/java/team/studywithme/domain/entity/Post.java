@@ -25,15 +25,23 @@ public class Post extends BaseEntity{
     private Board board;
 
     @Column(nullable = false)
+    private int hits;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
     private String content;
 
+    public void upHits(){
+        this.hits += 1;
+    }
+
     @Builder
-    public Post(Avatar avatar, Board board, String title, String content){
+    public Post(Avatar avatar, Board board, int hits, String title, String content){
         this.avatar = avatar;
         this.board = board;
+        this.hits = hits;
         this.title = title;
         this.content = content;
     }
