@@ -8,6 +8,7 @@ import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
+import team.studywithme.repository.AvatarRepository;
 import team.studywithme.utils.kakao.KakaoLoginUtils;
 
 
@@ -18,7 +19,7 @@ import team.studywithme.utils.kakao.KakaoLoginUtils;
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final AvatarService avatarService;
+    private final AvatarRepository avatarRepository;
     private final KakaoLoginUtils kakaoLoginUtils;
 
     @Transactional
@@ -36,7 +37,7 @@ public class AccountService {
 
         // 서비스 등록 회원 처음일때
         if(account == null) {
-            avatar = avatarService.saveGiveNickname(kakaoUserInfo.getNickname());
+            avatar = avatarRepository.save(new Avatar(kakaoUserInfo.getNickname()));
 
             account = Account.builder()
                     .id(kakaoUserInfo.getKakaoServerId())
@@ -50,17 +51,19 @@ public class AccountService {
             account.onActive();
 
             avatar = account.getAvatar();
-            avatarService.saveGiveDeActiveAvatar(avatar);
+            avatar.onActive();
+
+            // create At 처리로직
         }
         return account.getAvatar();
     }
 
     @Transactional
     public void delete(Long avatarID){
-        avatarService.delete(avatarID);
+        Avatar avatar = avatarRepository.findAvatarById(avatarID);
+        avatar.deActive();
 
         Account account = accountRepository.findAccountByAvatarID(avatarID);
-
         account.deActive();
     }
 }
