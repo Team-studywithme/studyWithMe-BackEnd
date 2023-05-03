@@ -26,6 +26,12 @@ public class AccountService {
         KakaoUserInfoDto kakaoUserInfo = kakaoLoginUtils.getKakaoUserInfo(code);
 
         Account account = accountRepository.findAccountById(kakaoUserInfo.getKakaoServerId());
+        Avatar avatar = createUser(account, kakaoUserInfo);
+
+        return avatar.getId();
+    }
+
+    public Avatar createUser(Account account, KakaoUserInfoDto kakaoUserInfo){
         Avatar avatar = null;
 
         // 서비스 등록 회원 처음일때
@@ -40,16 +46,13 @@ public class AccountService {
 
             accountRepository.save(account);
         }
-        if (account.getActive() == 0) { // 원래 가입 했었을때
+        else if (account.getActive() == 0) { // 원래 가입 했었을때
             account.onActive();
-            accountRepository.save(account);
 
             avatar = account.getAvatar();
             avatarService.saveGiveDeActiveAvatar(avatar);
         }
-        avatar = account.getAvatar();
-
-        return avatar.getId();
+        return account.getAvatar();
     }
 
     @Transactional
