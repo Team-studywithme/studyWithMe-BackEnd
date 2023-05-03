@@ -42,7 +42,7 @@ public class PostService {
     }
 
     @Transactional
-    public PostDetailResponse detailPost(Pageable pageable, Long postID){
+    public PostDetailResponse detailPost(int page, int size, Long postID){
         Post post = postRepository.findPostById(postID);
         post.upHits();
 

@@ -1,8 +1,6 @@
 package team.studywithme.api.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +20,11 @@ public class PostApiController {
     private final PostService postService;
 
     @GetMapping("/post")
-    public ResponseEntity<PostDetailResponse> readPost(@PageableDefault(page = 0, size = 5) Pageable pageable,
+    public ResponseEntity<PostDetailResponse> readPost(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                       @RequestParam(value = "size", defaultValue = "5") int size,
                                                        @RequestParam(value = "postID") Long postID){
 
-        PostDetailResponse postDetailResponse = postService.detailPost(pageable, postID);
+        PostDetailResponse postDetailResponse = postService.detailPost(page, size, postID);
         return ResponseEntity.status(HttpStatus.OK).body(postDetailResponse);
     }
 

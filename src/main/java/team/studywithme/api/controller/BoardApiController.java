@@ -1,8 +1,6 @@
 package team.studywithme.api.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +16,11 @@ public class BoardApiController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public ResponseEntity<BoardResponse> board(@PageableDefault(page = 0, size = 10) Pageable pageable,
-                                   @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
+    public ResponseEntity<BoardResponse> board(@RequestParam(value = "page", defaultValue = "0") int page,
+                                               @RequestParam(value = "size", defaultValue = "10") int size,
+                                               @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
-        BoardResponse boardResponse = boardService.matchingBoard(pageable, boardName);
+        BoardResponse boardResponse = boardService.matchingBoard(page, size, boardName);
         return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
     }
 }

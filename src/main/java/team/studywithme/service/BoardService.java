@@ -19,7 +19,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final PostService postService;
 
-    public BoardResponse matchingBoard(Pageable pageable, String boardName){
+    public BoardResponse matchingBoard(int page, int size, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
         List<PostResponse> postResponsePage =  postService.findPostResponseListByPageable(pageable, board.getId());
