@@ -24,4 +24,9 @@ public class Board extends BaseEntity{
     public Board(String name){
         this.name = name;
     }
+
+    public Board(Long boardID){
+        this.id = boardID;
+        this.name = null;
+    }
 }

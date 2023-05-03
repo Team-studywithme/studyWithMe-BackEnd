@@ -37,4 +37,13 @@ public class Post extends BaseEntity{
         this.title = title;
         this.content = content;
     }
+
+    public Post(Long postID){
+        this.id = postID;
+        this.avatar = null;
+        this.board = null;
+        this.hits = 0;
+        this.title = null;
+        this.content = null;
+    }
 }
