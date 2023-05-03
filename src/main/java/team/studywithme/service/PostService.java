@@ -5,10 +5,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import team.studywithme.api.controller.dto.request.PostRequest;
+import team.studywithme.api.controller.dto.request.UpdatePostRequest;
 import team.studywithme.api.controller.dto.response.CommentDetailResponse;
 import team.studywithme.api.controller.dto.response.PostDetailResponse;
 import team.studywithme.api.controller.dto.response.PostResponse;
 import team.studywithme.domain.entity.Avatar;
+import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.PostRepository;
@@ -53,5 +56,34 @@ public class PostService {
                 avatarMap.get(comment.getAvatar().getId()))).collect(Collectors.toList());
 
         return new PostDetailResponse().postCommentToPostDetailResponse(post, avatar, commentDetailResponseList, commentSlice.hasNext());
+    }
+
+    @Transactional
+    public void createPost(PostRequest postRequest, Long avatarID){
+        Post post = new Post(
+                new Avatar(avatarID),
+                new Board(postRequest.getBoard_id()),
+                0,
+                postRequest.getTitle(),
+                postRequest.getContent());
+
+        postRepository.save(post);
+    }
+
+    @Transactional
+    public void updatePost(UpdatePostRequest updatePostRequest, Long avatarID){
+        Post post = postRepository.findPostById(updatePostRequest.getPost_id());
+
+        post.setTitle(updatePostRequest.getTitle());
+        post.setContent(updatePostRequest.getContent());
+    }
+
+    @Transactional
+    public void deletePost(Long postID, Long avatarID){
+        Post post = postRepository.findPostById(postID);
+
+        post.deActive();
+
+        commentService.deleteCommentByPost(post);
     }
 }
