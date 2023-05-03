@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "nickname", "content", "commentDetailResponseList", "isNext"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "nickname", "content", "hits", "commentDetailResponseList", "isNext"})
 public class PostDetailResponse {
 
 
