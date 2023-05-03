@@ -1,7 +1,7 @@
 package team.studywithme.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,15 +9,17 @@ import team.studywithme.api.controller.dto.request.PostRequest;
 import team.studywithme.api.controller.dto.request.UpdatePostRequest;
 import team.studywithme.api.controller.dto.response.CommentDetailResponse;
 import team.studywithme.api.controller.dto.response.PostDetailResponse;
-import team.studywithme.api.controller.dto.response.PostResponse;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
+import team.studywithme.repository.AvatarRepository;
+import team.studywithme.repository.CommentRepository;
 import team.studywithme.repository.PostRepository;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,32 +27,24 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService {
 
+    private final AvatarRepository avatarRepository;
     private final PostRepository postRepository;
-    private final AvatarService avatarService;
-    private final CommentService commentService;
-
-    public List<PostResponse> findPostResponseListByPageable(Pageable pageable, Long boardID){
-        List<Post> postList = postRepository.findPagePosts(pageable, boardID);
-        HashMap<Long, String> avatarMap =  avatarService.findByPostList(postList);
-
-        return postList.stream().map(post -> new PostResponse(
-                post.getId(),
-                post.getTitle(),
-                post.getHits(),
-                post.getCreatedDate(),
-                avatarMap.get(post.getAvatar().getId()))).collect(Collectors.toList());
-    }
+    private final CommentRepository commentRepository;
 
     @Transactional
     public PostDetailResponse detailPost(int page, int size, Long postID){
         Post post = postRepository.findPostById(postID);
         post.upHits();
 
-        Avatar avatar = avatarService.findByPost(post);
+        Avatar avatar = avatarRepository.findAvatarById(post.getAvatar().getId());
 
-        Slice<Comment> commentSlice = commentService.findCommentSliceListByPageable(pageable, post);
+        Slice<Comment> commentSlice = commentRepository.findSliceComments(PageRequest.of(page, size), post.getId());
+        List<Comment> commentList = commentSlice.getContent();
 
-        HashMap<Long, String> avatarMap = avatarService.findByCommentList(commentSlice.getContent());
+        Set<Long> idSet = commentList.stream().map(comment -> comment.getAvatar().getId()).collect(Collectors.toSet());
+        List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
+
+        HashMap<Long, String> avatarMap = ListToHashMapForNickname(avatarList);
 
         List<CommentDetailResponse> commentDetailResponseList = commentSlice.getContent().stream().map(
                 comment -> new CommentDetailResponse(comment.getId(),
@@ -76,16 +70,33 @@ public class PostService {
     public void updatePost(UpdatePostRequest updatePostRequest, Long avatarID){
         Post post = postRepository.findPostById(updatePostRequest.getPost_id());
 
-        post.setTitle(updatePostRequest.getTitle());
-        post.setContent(updatePostRequest.getContent());
+        if(!post.getAvatar().getId().equals(avatarID)){
+            throw new IllegalArgumentException("게시물의 작성자가 아닙니다.");
+        }
+
+        post.updatePost(updatePostRequest);
     }
 
     @Transactional
     public void deletePost(Long postID, Long avatarID){
         Post post = postRepository.findPostById(postID);
 
+        if(!post.getAvatar().getId().equals(avatarID)){
+            throw new IllegalArgumentException("게시물의 작성자가 아닙니다.");
+        }
+
         post.deActive();
 
-        commentService.deleteCommentByPost(post);
+        commentRepository.deleteByPost(post.getId());
+    }
+
+    public HashMap<Long, String> ListToHashMapForNickname(List<Avatar> avatarList){
+        HashMap<Long, String> hashMap = new HashMap<>();
+
+        for(Avatar avatar : avatarList){
+            hashMap.put(avatar.getId(), avatar.getNickname());
+        }
+
+        return hashMap;
     }
 }
