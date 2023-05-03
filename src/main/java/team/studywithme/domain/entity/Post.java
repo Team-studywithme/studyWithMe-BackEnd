@@ -1,12 +1,12 @@
 package team.studywithme.domain.entity;
 
 import lombok.*;
+import team.studywithme.api.controller.dto.request.UpdatePostRequest;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseEntity{
 
@@ -51,5 +51,10 @@ public class Post extends BaseEntity{
         this.hits = 0;
         this.title = null;
         this.content = null;
+    }
+
+    public void updatePost(UpdatePostRequest updatePostRequest){
+        this.title = updatePostRequest.getTitle();
+        this.content = updatePostRequest.getContent();
     }
 }

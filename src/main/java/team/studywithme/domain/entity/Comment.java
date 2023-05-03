@@ -1,13 +1,13 @@
 package team.studywithme.domain.entity;
 
 import lombok.*;
+import team.studywithme.api.controller.dto.request.UpdateCommentRequest;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "comment")
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends BaseEntity{
 
@@ -31,5 +31,9 @@ public class Comment extends BaseEntity{
         this.avatar = avatar;
         this.post = post;
         this.content = content;
+    }
+
+    public void updateComment(UpdateCommentRequest updateCommentRequest){
+        this.content = updateCommentRequest.getContent();
     }
 }
