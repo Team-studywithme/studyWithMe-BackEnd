@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
 public class PostRequest {
 
-    @NotEmpty(message = "게시판 PK는 필수입니다.")
+    @NotNull(message = "게시판 PK는 필수입니다.")
     private Long board_id;
 
     @NotEmpty(message = "게시판의 제목은 필수입니다.")

@@ -12,6 +12,8 @@ import team.studywithme.api.controller.dto.response.PostDetailResponse;
 import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.PostService;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -28,7 +30,7 @@ public class PostApiController {
     }
 
     @PostMapping("/post")
-    public ResponseEntity<?> createPost(@RequestBody PostRequest postRequest,
+    public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest postRequest,
                                         @LoginAvatarId Long avatarID){
 
         postService.createPost(postRequest, avatarID);
@@ -36,7 +38,7 @@ public class PostApiController {
     }
 
     @PatchMapping("/post")
-    public ResponseEntity<?> updatePost(@RequestBody UpdatePostRequest updatePostRequest,
+    public ResponseEntity<?> updatePost(@Valid @RequestBody UpdatePostRequest updatePostRequest,
                                         @LoginAvatarId Long avatarID){
 
         postService.updatePost(updatePostRequest, avatarID);

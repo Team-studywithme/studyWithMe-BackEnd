@@ -8,6 +8,8 @@ import team.studywithme.api.controller.dto.request.UpdateCommentRequest;
 import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.CommentService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class CommentApiController {
@@ -15,7 +17,7 @@ public class CommentApiController {
     private final CommentService commentService;
 
     @PostMapping("/comment")
-    public ResponseEntity<?> createComment(@RequestBody CommentRequest commentRequest,
+    public ResponseEntity<?> createComment(@Valid @RequestBody CommentRequest commentRequest,
                                            @LoginAvatarId Long avatarID){
 
         commentService.createComment(commentRequest, avatarID);
@@ -23,7 +25,7 @@ public class CommentApiController {
     }
 
     @PatchMapping("/comment")
-    public ResponseEntity<?> updateComment(@RequestBody UpdateCommentRequest updateCommentRequest,
+    public ResponseEntity<?> updateComment(@Valid @RequestBody UpdateCommentRequest updateCommentRequest,
                                            @LoginAvatarId Long avatarID){
 
         commentService.updateComment(updateCommentRequest, avatarID);
