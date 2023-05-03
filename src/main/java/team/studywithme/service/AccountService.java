@@ -25,7 +25,7 @@ public class AccountService {
     public Long kakaoLogin(String code){
         KakaoUserInfoDto kakaoUserInfo = kakaoLoginUtils.getKakaoUserInfo(code);
 
-        Account account = accountRepository.findAccountById(kakaoUserInfo.getKakaoServerId());
+        Account account = accountRepository.findAccountByIdNoneIf(kakaoUserInfo.getKakaoServerId());
         Avatar avatar = createUser(account, kakaoUserInfo);
 
         return avatar.getId();

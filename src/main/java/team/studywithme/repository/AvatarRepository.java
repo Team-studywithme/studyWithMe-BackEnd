@@ -18,6 +18,9 @@ public interface AvatarRepository extends JpaRepository<Avatar, Long> {
 
     @Query("select av from Avatar av where av.id = :id and av.active = 1")
     Avatar findAvatarById(@Param("id") Long id);
+
+    @Query("select av from Avatar av where av.id = :id")
+    Avatar findAvatarByIdNoneIf(@Param("id") Long id);
     
     @Modifying(clearAutomatically = true)
     @Query("update Avatar av set av.nickname = :nickname where av.id = :id")
