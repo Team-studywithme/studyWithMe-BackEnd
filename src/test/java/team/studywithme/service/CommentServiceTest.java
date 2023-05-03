@@ -1,5 +1,6 @@
 package team.studywithme.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -29,16 +30,25 @@ public class CommentServiceTest extends PostDataServiceTest {
         @DisplayName("댓글_생성")
         void 댓글_생성() {
             // given
+            String content = "example_content_test";
+
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
             Board board = makeBoard();
             Post post = makePost(avatar, board);
 
-            CommentRequest commentRequest = new CommentRequest(post.getId(), "example_content_test");
+            CommentRequest commentRequest = new CommentRequest(post.getId(), content);
+
+            Comment expect = new Comment(avatar, post, content);
 
             // when
-            commentService.createComment(commentRequest, avatar.getId());
+            Comment actual = commentService.createComment(commentRequest, avatar.getId());
+
+            // then
+            Assertions.assertEquals(expect.getAvatar().getId(), actual.getAvatar().getId());
+            Assertions.assertEquals(expect.getPost().getId(), actual.getPost().getId());
+            Assertions.assertEquals(expect.getContent(), actual.getContent());
         }
     }
 
@@ -51,6 +61,8 @@ public class CommentServiceTest extends PostDataServiceTest {
         @DisplayName("댓글_생성")
         void 댓글_생성() {
             // given
+            String content = "update_content_test";
+
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
@@ -58,10 +70,17 @@ public class CommentServiceTest extends PostDataServiceTest {
             Post post = makePost(avatar, board);
             List<Comment> commentList = makeCommentList(avatar, post);
 
-            UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest(commentList.get(0).getId(), "update_content_test");
+            UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest(commentList.get(0).getId(), content);
+
+            Comment expect = new Comment(avatar, post, content);
 
             // when
-            commentService.updateComment(updateCommentRequest, avatar.getId());
+            Comment actual = commentService.updateComment(updateCommentRequest, avatar.getId());
+
+            // then
+            Assertions.assertEquals(expect.getAvatar().getId(), actual.getAvatar().getId());
+            Assertions.assertEquals(expect.getPost().getId(), actual.getPost().getId());
+            Assertions.assertEquals(expect.getContent(), actual.getContent());
         }
     }
 
@@ -83,6 +102,9 @@ public class CommentServiceTest extends PostDataServiceTest {
 
             // when
             commentService.deleteComment(commentList.get(0).getId(), avatar.getId());
+
+            // then
+            Assertions.assertEquals(0, commentList.get(0).getActive());
         }
     }
 }

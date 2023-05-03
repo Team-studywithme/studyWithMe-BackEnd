@@ -109,18 +109,30 @@ class PostServiceTest extends PostDataServiceTest {
 
         @Test
         @Transactional
-        @DisplayName("게시물_생성")
-        void 게시물_생성() {
+        @DisplayName("게시물_생성_성공")
+        void 게시물_생성_성공() {
             // given
+            String title = "example_title_test";
+            String content = "example_content_test";
+
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
             Board board = makeBoard();
 
-            PostRequest postRequest = new PostRequest(board.getId(), "example_title_test", "example_content_test");
+            PostRequest postRequest = new PostRequest(board.getId(), title, content);
+
+            Post expect = new Post(avatar, board, 0, title, content);
 
             // when
-            postService.createPost(postRequest, avatar.getId());
+            Post actual = postService.createPost(postRequest, avatar.getId());
+
+            // then
+            Assertions.assertEquals(expect.getTitle(), actual.getTitle());
+            Assertions.assertEquals(expect.getHits(), actual.getHits());
+            Assertions.assertEquals(expect.getContent(), actual.getContent());
+            Assertions.assertEquals(expect.getAvatar().getId(), actual.getAvatar().getId());
+            Assertions.assertEquals(expect.getBoard().getId(), actual.getBoard().getId());
         }
     }
 
@@ -130,19 +142,31 @@ class PostServiceTest extends PostDataServiceTest {
 
         @Test
         @Transactional
-        @DisplayName("게시물_업데이트")
-        void 게시물_업데이트() {
+        @DisplayName("게시물_업데이트_성공")
+        void 게시물_업데이트_성공() {
             // given
+            String title = "example_title_test";
+            String content = "update_content_test";
+
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
             Board board = makeBoard();
             Post post = makePost(avatar, board);
 
-            UpdatePostRequest updatePostRequest = new UpdatePostRequest(post.getId(), "example_title_test", "example_content_test");
+            Post expect = new Post(avatar, board, 0, title, content);
+
+            UpdatePostRequest updatePostRequest = new UpdatePostRequest(post.getId(), title, content);
 
             // when
-            postService.updatePost(updatePostRequest, avatar.getId());
+            Post actual = postService.updatePost(updatePostRequest, avatar.getId());
+
+            // then
+            Assertions.assertEquals(expect.getTitle(), actual.getTitle());
+            Assertions.assertEquals(expect.getHits(), actual.getHits());
+            Assertions.assertEquals(expect.getContent(), actual.getContent());
+            Assertions.assertEquals(expect.getAvatar().getId(), actual.getAvatar().getId());
+            Assertions.assertEquals(expect.getBoard().getId(), actual.getBoard().getId());
         }
     }
 
@@ -152,8 +176,8 @@ class PostServiceTest extends PostDataServiceTest {
 
         @Test
         @Transactional
-        @DisplayName("게시물_삭제")
-        void 게시물_삭제() {
+        @DisplayName("게시물_삭제_성공")
+        void 게시물_삭제_성공() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -163,6 +187,9 @@ class PostServiceTest extends PostDataServiceTest {
 
             // when
             postService.deletePost(post.getId(), avatar.getId());
+
+            // then
+            Assertions.assertEquals(0, post.getActive());
         }
     }
 

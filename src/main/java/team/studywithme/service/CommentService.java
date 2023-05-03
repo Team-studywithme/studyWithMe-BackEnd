@@ -18,15 +18,15 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     @Transactional
-    public void createComment(CommentRequest commentRequest, Long avatarID){
+    public Comment createComment(CommentRequest commentRequest, Long avatarID){
         Comment comment = new Comment(
                 new Avatar(avatarID), new Post(commentRequest.getPost_id()), commentRequest.getContent());
 
-        commentRepository.save(comment);
+        return commentRepository.save(comment);
     }
 
     @Transactional
-    public void updateComment(UpdateCommentRequest updateCommentRequest, Long avatarID){
+    public Comment updateComment(UpdateCommentRequest updateCommentRequest, Long avatarID){
         Comment comment = commentRepository.findCommentById(updateCommentRequest.getComment_id());
 
         if(comment == null){
@@ -37,6 +37,7 @@ public class CommentService {
         }
 
         comment.updateComment(updateCommentRequest);
+        return comment;
     }
 
     @Transactional

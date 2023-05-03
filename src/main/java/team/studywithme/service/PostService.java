@@ -55,7 +55,7 @@ public class PostService {
     }
 
     @Transactional
-    public void createPost(PostRequest postRequest, Long avatarID){
+    public Post createPost(PostRequest postRequest, Long avatarID){
         Post post = new Post(
                 new Avatar(avatarID),
                 new Board(postRequest.getBoard_id()),
@@ -63,11 +63,11 @@ public class PostService {
                 postRequest.getTitle(),
                 postRequest.getContent());
 
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Transactional
-    public void updatePost(UpdatePostRequest updatePostRequest, Long avatarID){
+    public Post updatePost(UpdatePostRequest updatePostRequest, Long avatarID){
         Post post = postRepository.findPostById(updatePostRequest.getPost_id());
 
         if(post == null){
@@ -78,6 +78,7 @@ public class PostService {
         }
 
         post.updatePost(updatePostRequest);
+        return post;
     }
 
     @Transactional
