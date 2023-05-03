@@ -1,5 +1,6 @@
 package team.studywithme.api.controller.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UpdateCommentRequest {
 
     @NotNull(message = "변경하려는 댓글의 PK는 필수입니다.")
