@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -21,18 +23,21 @@ public class Timer extends BaseEntity{
     private Avatar avatar;
 
     @Column(nullable = false)
-    private LocalDateTime start_time;
+    private LocalDate studyDate;
 
     @Column(nullable = false)
-    private LocalDateTime end_time;
+    private LocalTime startTime;
 
-    @Column(nullable = true)
-    private LocalDateTime study_time;
+    @Column(nullable = false)
+    private LocalTime endTime;
 
-    @Builder
-    public Timer(Long id, Avatar avatar){
-        this.id = id;
+    public Timer(Avatar avatar){
         this.avatar = avatar;
+        this.studyDate = LocalDate.now();
+        this.startTime = LocalTime.now();
+    }
 
+    public void setEndTime(LocalTime endTime){
+        this.endTime = endTime;
     }
 }
