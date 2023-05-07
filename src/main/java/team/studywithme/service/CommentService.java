@@ -32,7 +32,7 @@ public class CommentService {
         if(comment == null){
             throw new IllegalArgumentException("존재하지않는 댓글 PK가 요청되었습니다.");
         }
-        else if(!comment.getAvatar().getId().equals(avatarID)){
+        if(!comment.getAvatar().getId().equals(avatarID)){
             throw new IllegalArgumentException("댓글의 작성자가 아닙니다.");
         }
 
@@ -47,7 +47,7 @@ public class CommentService {
         if(comment == null){
             throw new IllegalArgumentException("존재하지않는 댓글 PK가 요청되었습니다.");
         }
-        else if(!comment.getAvatar().getId().equals(avatarID)){
+        if(!comment.getAvatar().getId().equals(avatarID)){
             throw new IllegalArgumentException("댓글의 작성자가 아닙니다.");
         }
 

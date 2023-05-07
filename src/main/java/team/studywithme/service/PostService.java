@@ -73,7 +73,7 @@ public class PostService {
         if(post == null){
             throw new IllegalArgumentException("존재하지않는 게시물 PK가 요청되었습니다.");
         }
-        else if(!post.getAvatar().getId().equals(avatarID)){
+        if(!post.getAvatar().getId().equals(avatarID)){
             throw new IllegalArgumentException("게시물의 작성자가 아닙니다.");
         }
 
@@ -88,7 +88,7 @@ public class PostService {
         if(post == null){
             throw new IllegalArgumentException("존재하지않는 게시물 PK가 요청되었습니다.");
         }
-        else if(!post.getAvatar().getId().equals(avatarID)){
+        if(!post.getAvatar().getId().equals(avatarID)){
             throw new IllegalArgumentException("게시물의 작성자가 아닙니다.");
         }
 
