@@ -4,7 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.domain.entity.Avatar;
+import team.studywithme.domain.entity.Comment;
+import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
