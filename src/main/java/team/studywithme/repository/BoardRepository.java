@@ -9,6 +9,9 @@ import team.studywithme.domain.entity.Board;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    @Query("select bo from Board bo where bo.name = :name and active = 1")
+    @Query("select bo from Board bo where bo.name = :name and bo.active = 1")
     Board findBoardByName(@Param("name") String name);
+
+    @Query("select bo from Board bo where bo.id = :board_id and bo.active = 1")
+    Board findBoardById(@Param("board_id") Long board_id);
 }
