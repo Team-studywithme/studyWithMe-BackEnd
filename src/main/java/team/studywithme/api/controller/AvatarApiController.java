@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import team.studywithme.api.controller.dto.request.GenericSingleRequest;
+import team.studywithme.api.controller.dto.request.NicknameRequest;
 import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.AvatarService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +18,9 @@ public class AvatarApiController {
 
 
     @PostMapping("/avatar/update")
-    public ResponseEntity<?> update(@RequestBody GenericSingleRequest<String> genericSingleRequest, @LoginAvatarId Long avatarId){
+    public ResponseEntity<?> update(@Valid @RequestBody NicknameRequest nicknameRequest, @LoginAvatarId Long avatarId){
 
-        int result = avatarService.update(avatarId, genericSingleRequest.getElement());
+        int result = avatarService.update(avatarId, nicknameRequest.getNickname());
 
         return (result != 0) ?
                 ResponseEntity.status(HttpStatus.OK).body(null) :
