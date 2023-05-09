@@ -16,7 +16,7 @@ public class AvatarService {
     public int update(Long avatarID, String nickname){
         Avatar avatar = avatarRepository.findAvatarById(avatarID);
         if(avatar == null){
-            return 0;
+            throw new IllegalArgumentException("올바른 사용자 PK가 아닙니다.");
         }
 
         return avatarRepository.updateNickname(avatarID, nickname);
