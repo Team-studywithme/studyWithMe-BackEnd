@@ -1,9 +1,7 @@
 package team.studywithme.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import team.studywithme.api.controller.dto.request.UpdatePostRequest;
 
 import javax.persistence.*;
 
@@ -25,16 +23,38 @@ public class Post extends BaseEntity{
     private Board board;
 
     @Column(nullable = false)
+    private int hits;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
     private String content;
 
+    public void upHits(){
+        this.hits += 1;
+    }
+
     @Builder
-    public Post(Avatar avatar, Board board, String title, String content){
+    public Post(Avatar avatar, Board board, int hits, String title, String content){
         this.avatar = avatar;
         this.board = board;
+        this.hits = hits;
         this.title = title;
         this.content = content;
+    }
+
+    public Post(Long postID){
+        this.id = postID;
+        this.avatar = null;
+        this.board = null;
+        this.hits = 0;
+        this.title = null;
+        this.content = null;
+    }
+
+    public void updatePost(UpdatePostRequest updatePostRequest){
+        this.title = updatePostRequest.getTitle();
+        this.content = updatePostRequest.getContent();
     }
 }

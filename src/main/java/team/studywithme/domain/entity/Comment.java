@@ -1,9 +1,7 @@
 package team.studywithme.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import team.studywithme.api.controller.dto.request.UpdateCommentRequest;
 
 import javax.persistence.*;
 
@@ -33,5 +31,9 @@ public class Comment extends BaseEntity{
         this.avatar = avatar;
         this.post = post;
         this.content = content;
+    }
+
+    public void updateComment(UpdateCommentRequest updateCommentRequest){
+        this.content = updateCommentRequest.getContent();
     }
 }

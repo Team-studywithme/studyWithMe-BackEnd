@@ -24,4 +24,9 @@ public class Avatar extends BaseEntity{
     public Avatar(String nickname){
         this.nickname = nickname;
     }
+
+    public Avatar(Long avatarID){
+        this.id = avatarID;
+        this.nickname = null;
+    }
 }
