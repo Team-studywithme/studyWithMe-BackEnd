@@ -12,11 +12,11 @@ import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.List;
 
-public class CommentServiceTest extends PostDataServiceTest {
+public class CommentServiceTest extends PostDataTest {
 
     @Autowired
     private CommentService commentService;

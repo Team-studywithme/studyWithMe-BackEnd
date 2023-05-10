@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
-import team.studywithme.service.structure.UserDataServiceTest;
+import team.studywithme.structure.UserDataTest;
 
-class AccountServiceTest extends UserDataServiceTest {
+class AccountServiceTest extends UserDataTest {
 
     @Autowired
     private AccountService accountService;

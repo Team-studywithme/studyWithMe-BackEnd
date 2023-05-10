@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.domain.entity.*;
-import team.studywithme.service.structure.UserDataServiceTest;
+import team.studywithme.structure.UserDataTest;
 
-class AvatarServiceTest extends UserDataServiceTest {
+class AvatarServiceTest extends UserDataTest {
 
     @Autowired
     private AvatarService avatarService;

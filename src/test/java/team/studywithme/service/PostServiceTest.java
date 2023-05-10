@@ -14,13 +14,13 @@ import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-class PostServiceTest extends PostDataServiceTest {
+class PostServiceTest extends PostDataTest {
 
     @Autowired
     private PostService postService;

@@ -11,13 +11,13 @@ import team.studywithme.api.controller.dto.response.PostResponse;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-class BoardServiceTest extends PostDataServiceTest {
+class BoardServiceTest extends PostDataTest {
 
     @Autowired
     private BoardService boardService;
