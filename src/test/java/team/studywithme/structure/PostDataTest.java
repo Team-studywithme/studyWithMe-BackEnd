@@ -1,4 +1,4 @@
-package team.studywithme.service.structure;
+package team.studywithme.structure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import team.studywithme.domain.entity.Avatar;
@@ -8,7 +8,7 @@ import team.studywithme.repository.CommentRepository;
 
 import java.util.List;
 
-public class PostDataServiceTest extends BoardDataServiceTest{
+public class PostDataTest extends BoardDataTest {
 
     @Autowired
     public CommentRepository commentRepository;

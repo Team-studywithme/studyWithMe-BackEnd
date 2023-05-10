@@ -1,4 +1,4 @@
-package team.studywithme.service.structure;
+package team.studywithme.structure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
@@ -9,7 +9,7 @@ import team.studywithme.repository.AvatarRepository;
 
 import java.util.List;
 
-public class UserDataServiceTest extends BaseServiceTest{
+public class UserDataTest extends BaseDataTest {
 
     @Autowired
     public AvatarRepository avatarRepository;
