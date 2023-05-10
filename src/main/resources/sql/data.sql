@@ -4,7 +4,7 @@ INSERT INTO avatar(id, active, created_date, last_modified_date, nickname) value
 
 ------------------------------ Account Data ------------------------------
 
-INSERT INTO account(id, active, created_date, last_modified_date, email, avatar_id) values ('2753601544', 1, '2023-04-11T11:44:30', '2023-04-13T09:22:31', 'weihyuk39@nate.com', 1)
+INSERT INTO account(id, active, created_date, last_modified_date, email, avatar_id) values ('2222222222', 1, '2023-04-11T11:44:30', '2023-04-13T09:22:31', 'weihyuk39@nate.com', 1)
 INSERT INTO account(id, active, created_date, last_modified_date, email, avatar_id) values ('1111111111', 1, '2023-04-13T12:42:21', '2023-04-13T15:45:21', 'email@nate.com', 2)
 
 ------------------------------ Board Data ------------------------------
