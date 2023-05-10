@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
+import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.structure.UserDataTest;
@@ -57,6 +58,29 @@ class AccountServiceTest extends UserDataTest {
             // then
             Assertions.assertEquals(result.getActive(), actual.getActive());
             Assertions.assertEquals(result.getNickname(), actual.getNickname());
+        }
+    }
+
+    @Nested
+    @DisplayName("회원_정보조회")
+    class 회원_정보조회{
+
+        @Test
+        @Transactional
+        @DisplayName("회원_정보조회_성공")
+        void 회원_정보조회_성공(){
+            // given
+            Avatar avatar = makeAvatar();
+            Account account = makeAccount(avatar);
+
+            // when
+            UserResponse actual = accountService.get(avatar.getId());
+
+            UserResponse expect = new UserResponse(account.getEmail(), avatar.getNickname());
+
+            // then
+            Assertions.assertEquals(expect, actual);
+
         }
     }
 

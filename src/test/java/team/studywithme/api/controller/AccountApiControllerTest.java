@@ -85,6 +85,32 @@ class AccountApiControllerTest extends UserDataTest {
     }
 
     @Nested
+    @DisplayName("회원_정보조회")
+    class 회원_정보조회{
+
+        @Test
+        @Transactional
+        @DisplayName("회원_정보조회_성공")
+        void 회원_정보조회_성공() throws Exception{
+            // given
+            Avatar avatar = makeAvatar();
+            makeAccount(avatar);
+
+            session.setAttribute("session", avatar.getId());
+            String url = "/account/get";
+
+            // when && then
+            mockMvc.perform(get(url)
+                            .session(session))
+                    .andDo(print())
+                    .andDo(document("account/get",
+                            preprocessRequest(prettyPrint()),
+                            preprocessResponse(prettyPrint())))
+                    .andExpect(status().isOk());
+        }
+    }
+
+    @Nested
     @DisplayName("회원_정보삭제")
     class 회원_정보삭제{
 

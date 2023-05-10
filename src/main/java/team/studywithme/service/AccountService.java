@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
+import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
@@ -56,6 +57,13 @@ public class AccountService {
             // create At 처리로직
         }
         return account.getAvatar();
+    }
+
+    public UserResponse get(Long avatarID){
+        Avatar avatar = avatarRepository.findAvatarById(avatarID);
+        Account account = accountRepository.findAccountByAvatarID(avatarID);
+
+        return new UserResponse(account.getEmail(), avatar.getNickname());
     }
 
     @Transactional

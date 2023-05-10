@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.studywithme.api.controller.dto.response.KakaoLogoutResponse;
+import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.AccountService;
 import team.studywithme.utils.session.SessionUtils;
@@ -40,6 +41,14 @@ public class AccountApiController {
 
         return ResponseEntity.ok(new KakaoLogoutResponse());
     }
+
+    @GetMapping("/account/get")
+    public ResponseEntity<UserResponse> get(@LoginAvatarId Long avatarId){
+        UserResponse userResponse = accountService.get(avatarId);
+
+        return ResponseEntity.ok(userResponse);
+    }
+
 
     @DeleteMapping("/account/delete")
     public ResponseEntity delete(@LoginAvatarId Long avatarId){
