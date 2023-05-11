@@ -24,4 +24,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Modifying
     @Query(value = "update Comment co set co.active = 0 where co.post.id = :postID ")
     int deleteByPost(@Param("postID") Long postID);
+
+    @Modifying
+    @Query("update Comment co set co.active = 0 where co.avatar.id = :avatarID")
+    int updateActives(@Param("avatarID") Long avatarID);
 }
