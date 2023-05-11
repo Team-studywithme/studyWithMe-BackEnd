@@ -57,4 +57,38 @@ class BoardServiceTest extends PostDataServiceTest {
             Assertions.assertEquals(expect, actual);
         }
     }
+
+    @Nested
+    @DisplayName("게시물리스트로_게시판응답만들기")
+    class 게시물리스트로_게시판응답만들기{
+
+        @Test
+        @Transactional
+        @DisplayName("게시물리스트로_게시판응답만들기_성공")
+        void 게시물리스트로_게시판응답만들기_성공() {
+            // given
+            Avatar avatar = makeAvatar();
+            makeAccount(avatar);
+
+            Board board = makeBoard();
+            List<Post> postList = makePostList(avatar, board);
+
+            String boardName = "matching";
+
+            Post post = null;
+            List<PostResponse> postResponseList = new ArrayList<>();
+            for(int i=0;i<postList.size();i++){
+                post = postList.get(i);
+                postResponseList.add(new PostResponse(post.getId(), post.getTitle(), 0, post.getCreatedDate(), avatar.getNickname()));
+            }
+
+            BoardResponse expect = new BoardResponse(boardName, postResponseList);
+
+            // when
+            BoardResponse actual = boardService.postListToBoardResponse(board, postList);
+
+            // then
+            Assertions.assertEquals(expect, actual);
+        }
+    }
 }

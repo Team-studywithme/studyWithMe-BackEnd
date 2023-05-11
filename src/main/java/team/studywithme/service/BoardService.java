@@ -33,6 +33,18 @@ public class BoardService {
 
         List<Post> postList = postRepository.findPagePosts(PageRequest.of(page, size), board.getId());
 
+        return postListToBoardResponse(board, postList);
+    }
+
+    public BoardResponse matchingMyBoard(int page, int size, Long avatarID, String boardName){
+        Board board = boardRepository.findBoardByName(boardName);
+
+        List<Post> postList = postRepository.findMyPagePosts(PageRequest.of(page, size), avatarID, board.getId());
+
+        return postListToBoardResponse(board, postList);
+    }
+
+    public BoardResponse postListToBoardResponse(Board board, List<Post> postList){
         Set<Long> idSet = postList.stream().map(post -> post.getAvatar().getId()).collect(Collectors.toSet());
         List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.studywithme.api.controller.dto.response.BoardResponse;
+import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.BoardService;
 
 @RestController
@@ -21,6 +22,16 @@ public class BoardApiController {
                                                @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
         BoardResponse boardResponse = boardService.matchingBoard(page, size, boardName);
+        return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
+    }
+
+    @GetMapping("/my_board")
+    public ResponseEntity<BoardResponse> myBoard(@RequestParam(value = "page", defaultValue = "0") int page,
+                                               @RequestParam(value = "size", defaultValue = "10") int size,
+                                               @LoginAvatarId Long avatarId,
+                                               @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
+
+        BoardResponse boardResponse = boardService.matchingMyBoard(page, size, avatarId, boardName);
         return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
     }
 }
