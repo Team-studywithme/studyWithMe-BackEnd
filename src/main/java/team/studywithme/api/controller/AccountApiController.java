@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.studywithme.api.controller.dto.response.KakaoLogoutResponse;
+import team.studywithme.api.controller.dto.response.LoginResponse;
 import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.config.session.LoginAvatarId;
 import team.studywithme.service.AccountService;
@@ -25,11 +26,11 @@ public class AccountApiController {
     private final SessionUtils sessionUtils;
 
     @GetMapping("/kakao")
-    public ResponseEntity studyLogin(@RequestParam String code, HttpSession httpSession){
+    public ResponseEntity<LoginResponse> studyLogin(@RequestParam String code, HttpSession httpSession){
         Long avatarID = accountService.kakaoLogin(code);
         sessionUtils.createSession(avatarID, httpSession);
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(new LoginResponse(avatarID));
     }
 
     @GetMapping("/logout")
