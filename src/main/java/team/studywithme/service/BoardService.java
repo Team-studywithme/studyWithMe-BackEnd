@@ -55,6 +55,7 @@ public class BoardService {
                 post.getTitle(),
                 post.getHits(),
                 post.getCreatedDate(),
+                post.getAvatar().getId(),
                 avatarMap.get(post.getAvatar().getId()))).collect(Collectors.toList());
 
         return new BoardResponse(board.getName(), postResponsePage);

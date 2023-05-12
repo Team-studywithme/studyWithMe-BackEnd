@@ -50,12 +50,12 @@ class PostServiceTest extends PostDataServiceTest {
             for(int i=commentList.size() - 1;i>=1;i--){
                 comment = commentList.get(i);
                 commentDetailResponseList.add(new CommentDetailResponse(
-                        comment.getId(), comment.getContent(), avatar.getNickname()
+                        comment.getId(), comment.getContent(), avatar.getId(), avatar.getNickname()
                 ));
             }
 
             PostDetailResponse expect = new PostDetailResponse(
-                    post.getId(), post.getTitle(), post.getCreatedDate(),
+                    post.getId(), post.getTitle(), post.getCreatedDate(), post.getAvatar().getId(),
                     avatar.getNickname(), post.getContent(), 1, commentDetailResponseList, true
             );
 
@@ -86,12 +86,12 @@ class PostServiceTest extends PostDataServiceTest {
             for(int i=commentList.size() - 3;i>=0;i--){
                 comment = commentList.get(i);
                 commentDetailResponseList.add(new CommentDetailResponse(
-                        comment.getId(), comment.getContent(), avatar.getNickname()
+                        comment.getId(), comment.getContent(), avatar.getId(), avatar.getNickname()
                 ));
             }
 
             PostDetailResponse expect = new PostDetailResponse(
-                    post.getId(), post.getTitle(), post.getCreatedDate(),
+                    post.getId(), post.getTitle(), post.getCreatedDate(), post.getAvatar().getId(),
                     avatar.getNickname(), post.getContent(), 1, commentDetailResponseList, false
             );
 

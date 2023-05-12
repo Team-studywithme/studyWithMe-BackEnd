@@ -49,6 +49,7 @@ public class PostService {
         List<CommentDetailResponse> commentDetailResponseList = commentSlice.getContent().stream().map(
                 comment -> new CommentDetailResponse(comment.getId(),
                 comment.getContent(),
+                comment.getAvatar().getId(),
                 avatarMap.get(comment.getAvatar().getId()))).collect(Collectors.toList());
 
         return new PostDetailResponse().postCommentToPostDetailResponse(post, avatar, commentDetailResponseList, commentSlice.hasNext());

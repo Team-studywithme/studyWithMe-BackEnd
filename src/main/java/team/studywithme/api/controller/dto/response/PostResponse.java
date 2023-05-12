@@ -10,12 +10,13 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "nickname"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "avatarID", "nickname"})
 public class PostResponse {
 
     private Long id;
     private String title;
     private int hits;
     private LocalDateTime createdDate;
+    private Long avatarID;
     private String nickname;
 }

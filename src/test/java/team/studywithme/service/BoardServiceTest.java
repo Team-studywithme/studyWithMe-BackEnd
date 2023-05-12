@@ -45,7 +45,8 @@ class BoardServiceTest extends PostDataServiceTest {
             List<PostResponse> postResponseList = new ArrayList<>();
             for(int i=postList.size() - 1;i>=0;i--){
                 post = postList.get(i);
-                postResponseList.add(new PostResponse(post.getId(), post.getTitle(), 0, post.getCreatedDate(), avatar.getNickname()));
+                postResponseList.add(new PostResponse(post.getId(), post.getTitle(), 0,
+                        post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
             BoardResponse expect = new BoardResponse(boardName, postResponseList);
@@ -79,7 +80,8 @@ class BoardServiceTest extends PostDataServiceTest {
             List<PostResponse> postResponseList = new ArrayList<>();
             for(int i=0;i<postList.size();i++){
                 post = postList.get(i);
-                postResponseList.add(new PostResponse(post.getId(), post.getTitle(), 0, post.getCreatedDate(), avatar.getNickname()));
+                postResponseList.add(new PostResponse(post.getId(), post.getTitle(), 0,
+                        post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
             BoardResponse expect = new BoardResponse(boardName, postResponseList);
