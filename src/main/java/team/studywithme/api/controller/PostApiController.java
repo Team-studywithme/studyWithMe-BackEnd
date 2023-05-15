@@ -21,10 +21,9 @@ public class PostApiController {
 
     @GetMapping("/post")
     public ResponseEntity<PostDetailResponse> readPost(@RequestParam(value = "page", defaultValue = "0") int page,
-                                                       @RequestParam(value = "size", defaultValue = "5") int size,
                                                        @RequestParam(value = "postID") Long postID){
 
-        PostDetailResponse postDetailResponse = postService.detailPost(page, size, postID);
+        PostDetailResponse postDetailResponse = postService.detailPost(page, postID);
         return ResponseEntity.status(HttpStatus.OK).body(postDetailResponse);
     }
 

@@ -23,23 +23,24 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BoardService {
+    private final int post_size = 5;
 
     private final AvatarRepository avatarRepository;
     private final BoardRepository boardRepository;
     private final PostRepository postRepository;
 
-    public BoardResponse matchingBoard(int page, int size, String boardName){
+    public BoardResponse matchingBoard(int page, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
-        List<Post> postList = postRepository.findPagePosts(PageRequest.of(page, size), board.getId());
+        List<Post> postList = postRepository.findPagePosts(PageRequest.of(page, post_size), board.getId());
 
         return postListToBoardResponse(board, postList);
     }
 
-    public BoardResponse matchingMyBoard(int page, int size, Long avatarID, String boardName){
+    public BoardResponse matchingMyBoard(int page, Long avatarID, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
-        List<Post> postList = postRepository.findMyPagePosts(PageRequest.of(page, size), avatarID, board.getId());
+        List<Post> postList = postRepository.findMyPagePosts(PageRequest.of(page, post_size), avatarID, board.getId());
 
         return postListToBoardResponse(board, postList);
     }

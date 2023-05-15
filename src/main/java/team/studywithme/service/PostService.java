@@ -27,18 +27,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService {
 
+    private final int comment_size = 5;
+
     private final AvatarRepository avatarRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
     @Transactional
-    public PostDetailResponse detailPost(int page, int size, Long postID){
+    public PostDetailResponse detailPost(int page, Long postID){
         Post post = postRepository.findPostById(postID);
         post.upHits();
 
         Avatar avatar = avatarRepository.findAvatarById(post.getAvatar().getId());
 
-        Slice<Comment> commentSlice = commentRepository.findSliceComments(PageRequest.of(page, size), post.getId());
+        Slice<Comment> commentSlice = commentRepository.findSliceComments(PageRequest.of(page, comment_size), post.getId());
         List<Comment> commentList = commentSlice.getContent();
 
         Set<Long> idSet = commentList.stream().map(comment -> comment.getAvatar().getId()).collect(Collectors.toSet());

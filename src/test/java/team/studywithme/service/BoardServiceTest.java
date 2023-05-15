@@ -38,7 +38,6 @@ class BoardServiceTest extends PostDataServiceTest {
             List<Post> postList = makePostList(avatar, board);
 
             int page = 0;
-            int size = 10;
             String boardName = "matching";
 
             Post post = null;
@@ -52,7 +51,7 @@ class BoardServiceTest extends PostDataServiceTest {
             BoardResponse expect = new BoardResponse(boardName, postResponseList);
 
             // when
-            BoardResponse actual = boardService.matchingBoard(page, size, boardName);
+            BoardResponse actual = boardService.matchingBoard(page, boardName);
 
             // then
             Assertions.assertEquals(expect, actual);

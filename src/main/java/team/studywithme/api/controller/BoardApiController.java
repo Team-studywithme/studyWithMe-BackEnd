@@ -18,20 +18,18 @@ public class BoardApiController {
 
     @GetMapping("/board")
     public ResponseEntity<BoardResponse> board(@RequestParam(value = "page", defaultValue = "0") int page,
-                                               @RequestParam(value = "size", defaultValue = "10") int size,
                                                @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
-        BoardResponse boardResponse = boardService.matchingBoard(page, size, boardName);
+        BoardResponse boardResponse = boardService.matchingBoard(page, boardName);
         return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
     }
 
     @GetMapping("/my_board")
     public ResponseEntity<BoardResponse> myBoard(@RequestParam(value = "page", defaultValue = "0") int page,
-                                               @RequestParam(value = "size", defaultValue = "10") int size,
                                                @LoginAvatarId Long avatarId,
                                                @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
-        BoardResponse boardResponse = boardService.matchingMyBoard(page, size, avatarId, boardName);
+        BoardResponse boardResponse = boardService.matchingMyBoard(page, avatarId, boardName);
         return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
     }
 }

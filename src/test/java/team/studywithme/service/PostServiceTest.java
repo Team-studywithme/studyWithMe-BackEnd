@@ -43,7 +43,6 @@ class PostServiceTest extends PostDataServiceTest {
 
 
             int page = 0;
-            int size = 2;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
@@ -60,7 +59,7 @@ class PostServiceTest extends PostDataServiceTest {
             );
 
             // when
-            PostDetailResponse actual = postService.detailPost(page, size, post.getId());
+            PostDetailResponse actual = postService.detailPost(page, post.getId());
 
             // then
             Assertions.assertEquals(expect, actual);
@@ -79,7 +78,6 @@ class PostServiceTest extends PostDataServiceTest {
             List<Comment> commentList = makeCommentList(avatar, post);
 
             int page = 1;
-            int size = 2;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
@@ -96,7 +94,7 @@ class PostServiceTest extends PostDataServiceTest {
             );
 
             // when
-            PostDetailResponse actual = postService.detailPost(page, size, post.getId());
+            PostDetailResponse actual = postService.detailPost(page, post.getId());
 
             // then
             Assertions.assertEquals(expect, actual);
