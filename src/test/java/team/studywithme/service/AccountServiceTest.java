@@ -1,10 +1,7 @@
 package team.studywithme.service;
 
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
@@ -18,12 +15,16 @@ class AccountServiceTest extends UserDataTest {
     @Autowired
     private AccountService accountService;
 
+    @AfterEach
+    public void afterSetup(){
+        deleteAllRepository();
+    }
+
     @Nested
     @DisplayName("조건에따른_회원_생성")
     class 조건에따른_회원_생성{
 
         @Test
-        @Transactional
         @DisplayName("서비스에_처음_등록하는_회원일때")
         void 서비스에_처음_등록하는_회원일때() {
             // given
@@ -66,7 +67,6 @@ class AccountServiceTest extends UserDataTest {
     class 회원_정보조회{
 
         @Test
-        @Transactional
         @DisplayName("회원_정보조회_성공")
         void 회원_정보조회_성공(){
             // given
@@ -89,7 +89,6 @@ class AccountServiceTest extends UserDataTest {
     class 회원_정보삭제{
 
         @Test
-        @Transactional
         @DisplayName("회원_정보삭제_성공")
         void 회원_정보삭제_성공(){
             // given

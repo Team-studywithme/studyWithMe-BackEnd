@@ -13,6 +13,10 @@ public class PostDataTest extends BoardDataTest {
     @Autowired
     public CommentRepository commentRepository;
 
+    public Comment makeComment(Avatar avatar, Post post){
+        return commentRepository.saveAndFlush(new Comment(avatar, post, "content_1"));
+    }
+
     public List<Comment> makeCommentList(Avatar avatar, Post post){
         return commentRepository.saveAllAndFlush(List.of(
                 new Comment(avatar, post, "content_1"),
@@ -21,4 +25,12 @@ public class PostDataTest extends BoardDataTest {
         ));
     }
 
+    @Override
+    public void deleteAllRepository(){
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
+        boardRepository.deleteAll();
+        accountRepository.deleteAll();
+        avatarRepository.deleteAll();
+    }
 }

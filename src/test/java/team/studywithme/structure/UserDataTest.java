@@ -36,4 +36,9 @@ public class UserDataTest extends BaseDataTest {
     public KakaoUserInfoDto makeKakaoUserInfo(){
         return new KakaoUserInfoDto("481308431", "test@naver.com");
     }
+
+    public void deleteAllRepository(){
+        accountRepository.deleteAll();
+        avatarRepository.deleteAll();
+    }
 }

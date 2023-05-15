@@ -31,4 +31,12 @@ public class BoardDataTest extends UserDataTest {
                 new Post(avatar, board, 0, "title_C", "content_C")
         ));
     }
+
+    @Override
+    public void deleteAllRepository(){
+        postRepository.deleteAll();
+        boardRepository.deleteAll();
+        accountRepository.deleteAll();
+        avatarRepository.deleteAll();
+    }
 }
