@@ -23,6 +23,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findMyPagePosts(Pageable pageable, @Param("avatarID") Long avatarID, @Param("boardID") Long boardID);
 
     @Query(value = "select po from Post po " +
+            "where po.board.id = :boardID and po.active = 1 and po.title LIKE %:keyword% " +
+            "order by po.createdDate desc")
+    List<Post> findSearchPagePosts(Pageable pageable, @Param("keyword") String keyword, @Param("boardID") Long boardID);
+
+    @Query(value = "select po from Post po " +
             "where po.id = :postID and po.active = 1")
     Post findPostById(@Param("postID") Long postID);
 }
