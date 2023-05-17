@@ -49,7 +49,7 @@ class AvatarApiControllerTest extends UserDataTest {
                             .content(content)
                             .contentType(MediaType.APPLICATION_JSON))
                     .andDo(print())
-                    .andDo(document("account/update",
+                    .andDo(document("avatar/update",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());

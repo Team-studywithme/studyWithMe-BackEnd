@@ -12,6 +12,8 @@ spring:
         format_sql: true
   profiles:
     active: test
+  kakao:
+    id: {SECRET}
 logging.level:
   org.hibernate.SQL: debug
 

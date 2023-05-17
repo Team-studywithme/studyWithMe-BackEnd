@@ -1,0 +1,7 @@
+= Account App API
+
+== Account
+
+=== /account/delete
+==== 유저 탈퇴
+operation::account/delete[snippets='http-request,path-parameters,http-response,response-fields']

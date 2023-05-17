@@ -1,0 +1,25 @@
+= Spring REST Docs Test
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:docinfo: shared-head
+
+[[API-List]]
+== APIs
+
+=== Account API
+* link:kakao.html[카카오 로그인 API, window=_blank]
+
+* link:logout.html[회원 로그아웃 API, window=_blank]
+
+* link:account_get.html[회원 조회 API, window=_blank]
+
+* link:account_delete.html[회원 삭제 API, window=_blank]
+
+
+=== Avatar API
+
+* link:avatar_update.html[회원 수정 API, window=_blank]
