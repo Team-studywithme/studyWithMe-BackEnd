@@ -20,4 +20,9 @@ public class UpdatePostRequest {
 
     @NotEmpty(message = "게시물의 내용은 빈칸으로 변경하지 못합니다.")
     private String content;
+
+    public void setElement(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }

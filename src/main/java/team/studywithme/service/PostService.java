@@ -16,6 +16,7 @@ import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
 import team.studywithme.repository.CommentRepository;
 import team.studywithme.repository.PostRepository;
+import team.studywithme.utils.profanity.KoreanProfanityFilter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class PostService {
     private final AvatarRepository avatarRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
+    private final KoreanProfanityFilter koreanProfanityFilter;
 
     @Transactional
     public PostDetailResponse detailPost(int page, Long postID){
@@ -63,8 +65,8 @@ public class PostService {
                 new Avatar(avatarID),
                 new Board(postRequest.getBoard_id()),
                 0,
-                postRequest.getTitle(),
-                postRequest.getContent());
+                koreanProfanityFilter.filterProfanity(postRequest.getTitle()),
+                koreanProfanityFilter.filterProfanity(postRequest.getContent()));
 
         return postRepository.save(post);
     }
@@ -79,6 +81,10 @@ public class PostService {
         else if(!post.getAvatar().getId().equals(avatarID)){
             throw new IllegalArgumentException("게시물의 작성자가 아닙니다.");
         }
+
+        updatePostRequest.setElement(
+                koreanProfanityFilter.filterProfanity(updatePostRequest.getTitle()),
+                koreanProfanityFilter.filterProfanity(updatePostRequest.getContent()));
 
         post.updatePost(updatePostRequest);
         return post;
