@@ -21,7 +21,21 @@ public class PostDataTest extends BoardDataTest {
         return commentRepository.saveAllAndFlush(List.of(
                 new Comment(avatar, post, "content_1"),
                 new Comment(avatar, post, "content_2"),
-                new Comment(avatar, post, "content_3")
+                new Comment(avatar, post, "content_3"),
+                new Comment(avatar, post, "content_4"),
+                new Comment(avatar, post, "content_5"),
+                new Comment(avatar, post, "content_6")
+        ));
+    }
+
+    public List<Comment> makeLittleCommentList(Avatar avatar, Post post){
+        return commentRepository.saveAllAndFlush(List.of(
+                new Comment(avatar, post, "content_1"),
+                new Comment(avatar, post, "content_2"),
+                new Comment(avatar, post, "content_3"),
+                new Comment(avatar, post, "content_4"),
+                new Comment(avatar, post, "content_5"),
+                new Comment(avatar, post, "content_6")
         ));
     }
 
