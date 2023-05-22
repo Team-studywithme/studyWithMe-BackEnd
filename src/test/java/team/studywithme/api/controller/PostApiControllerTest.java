@@ -51,7 +51,7 @@ class PostApiControllerTest extends PostDataTest {
             mockMvc.perform(get(url)
                             .session(session))
                     .andDo(print())
-                    .andDo(document("post",
+                    .andDo(document("post-get",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
@@ -84,7 +84,7 @@ class PostApiControllerTest extends PostDataTest {
                             .session(session)
                             .content(content))
                     .andDo(print())
-                    .andDo(document("post",
+                    .andDo(document("post-post",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
@@ -117,7 +117,7 @@ class PostApiControllerTest extends PostDataTest {
                             .session(session)
                             .content(content))
                     .andDo(print())
-                    .andDo(document("post",
+                    .andDo(document("post-patch",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
@@ -146,7 +146,7 @@ class PostApiControllerTest extends PostDataTest {
             mockMvc.perform(delete(url)
                             .session(session))
                     .andDo(print())
-                    .andDo(document("post",
+                    .andDo(document("post-delete",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());

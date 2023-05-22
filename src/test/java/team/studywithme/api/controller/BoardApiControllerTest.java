@@ -46,7 +46,7 @@ class BoardApiControllerTest extends BoardDataTest {
             // when && then
             mockMvc.perform(get(url))
                     .andDo(print())
-                    .andDo(document("board",
+                    .andDo(document("board-get",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());

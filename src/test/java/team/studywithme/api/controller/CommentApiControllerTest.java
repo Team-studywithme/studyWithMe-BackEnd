@@ -57,7 +57,7 @@ class CommentApiControllerTest extends PostDataTest {
                             .session(session)
                             .content(content))
                     .andDo(print())
-                    .andDo(document("comment",
+                    .andDo(document("comment-post",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
@@ -91,7 +91,7 @@ class CommentApiControllerTest extends PostDataTest {
                             .session(session)
                             .content(content))
                     .andDo(print())
-                    .andDo(document("comment",
+                    .andDo(document("comment-patch",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
@@ -121,7 +121,7 @@ class CommentApiControllerTest extends PostDataTest {
             mockMvc.perform(delete(url)
                             .session(session))
                     .andDo(print())
-                    .andDo(document("comment",
+                    .andDo(document("comment-delete",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
                     .andExpect(status().isOk());
