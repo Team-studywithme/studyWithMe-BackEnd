@@ -1,0 +1,7 @@
+= Comment App API
+
+== Comment
+
+=== /comment
+==== 댓글 생성
+operation::comment-post[snippets='http-request,path-parameters,http-response,response-fields']

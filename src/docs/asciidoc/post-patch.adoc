@@ -1,0 +1,7 @@
+= Post App API
+
+== Post
+
+=== /post
+==== 게시물 수정
+operation::post-patch[snippets='http-request,path-parameters,http-response,response-fields']

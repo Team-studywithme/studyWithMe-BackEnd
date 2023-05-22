@@ -1,0 +1,7 @@
+= Board App API
+
+== Board
+
+=== /search_board
+==== 검색 게시판 조회
+operation::search_board[snippets='http-request,path-parameters,http-response,response-fields']
