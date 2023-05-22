@@ -1,9 +1,6 @@
 package team.studywithme.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.response.BoardResponse;
@@ -11,23 +8,27 @@ import team.studywithme.api.controller.dto.response.PostResponse;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-class BoardServiceTest extends PostDataServiceTest {
+class BoardServiceTest extends PostDataTest {
 
     @Autowired
     private BoardService boardService;
+
+    @AfterEach
+    public void afterSetup(){
+        deleteAllRepository();
+    }
 
     @Nested
     @DisplayName("매칭게시판을_조회")
     class 매칭게시판을_조회{
 
         @Test
-        @Transactional
         @DisplayName("매칭게시판을_조회")
         void 매칭게시판을_조회() {
             // given

@@ -1,9 +1,6 @@
 package team.studywithme.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.request.CommentRequest;
@@ -12,21 +9,25 @@ import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.List;
 
-public class CommentServiceTest extends PostDataServiceTest {
+public class CommentServiceTest extends PostDataTest {
 
     @Autowired
     private CommentService commentService;
+
+    @AfterEach
+    public void afterSetup(){
+        deleteAllRepository();
+    }
 
     @Nested
     @DisplayName("댓글_생성")
     class 댓글_생성 {
 
         @Test
-        @Transactional
         @DisplayName("댓글_생성")
         void 댓글_생성() {
             // given
@@ -57,7 +58,6 @@ public class CommentServiceTest extends PostDataServiceTest {
     class 댓글_변경 {
 
         @Test
-        @Transactional
         @DisplayName("댓글_생성")
         void 댓글_생성() {
             // given
@@ -89,7 +89,6 @@ public class CommentServiceTest extends PostDataServiceTest {
     class 댓글_삭제 {
 
         @Test
-        @Transactional
         @DisplayName("댓글_삭제")
         void 댓글_삭제() {
             // given
@@ -98,13 +97,15 @@ public class CommentServiceTest extends PostDataServiceTest {
 
             Board board = makeBoard();
             Post post = makePost(avatar, board);
-            List<Comment> commentList = makeCommentList(avatar, post);
+            Comment comment = makeComment(avatar, post);
 
             // when
-            commentService.deleteComment(commentList.get(0).getId(), avatar.getId());
+            commentService.deleteComment(comment.getId(), avatar.getId());
+
+            Comment actual = commentRepository.findCommentById(comment.getId());
 
             // then
-            Assertions.assertEquals(0, commentList.get(0).getActive());
+            Assertions.assertNull(actual);
         }
     }
 }

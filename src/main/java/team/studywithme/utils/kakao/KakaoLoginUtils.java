@@ -106,7 +106,7 @@ public class KakaoLoginUtils {
             throw new RuntimeException(e);
         } catch (HttpClientErrorException e){
             log.info("many request to kakao server");
-            return null;
+            throw new IllegalArgumentException("클라이언트의 인증코드가 틀리거나 이미 사용한 인증코드입니다.");
         }
     }
 }

@@ -1,9 +1,6 @@
 package team.studywithme.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.request.PostRequest;
@@ -14,23 +11,27 @@ import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
-import team.studywithme.service.structure.PostDataServiceTest;
+import team.studywithme.structure.PostDataTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-class PostServiceTest extends PostDataServiceTest {
+class PostServiceTest extends PostDataTest {
 
     @Autowired
     private PostService postService;
+
+    @AfterEach
+    public void afterSetup(){
+        deleteAllRepository();
+    }
 
     @Nested
     @DisplayName("게시물_상세정보_조회")
     class 게시물_상세정보_조회{
 
         @Test
-        @Transactional
         @DisplayName("게시물_상세정보_조회_댓글이_더있을때")
         void 게시물_상세정보_조회_댓글이_더있을때() {
             // given
@@ -66,7 +67,6 @@ class PostServiceTest extends PostDataServiceTest {
         }
 
         @Test
-        @Transactional
         @DisplayName("게시물_상세정보_조회_댓글이_더없을때")
         void 게시물_상세정보_조회_댓글이_더없을때() {
             // given
@@ -106,7 +106,6 @@ class PostServiceTest extends PostDataServiceTest {
     class 게시물_생성 {
 
         @Test
-        @Transactional
         @DisplayName("게시물_생성_성공")
         void 게시물_생성_성공() {
             // given
@@ -139,7 +138,6 @@ class PostServiceTest extends PostDataServiceTest {
     class 게시물_업데이트 {
 
         @Test
-        @Transactional
         @DisplayName("게시물_업데이트_성공")
         void 게시물_업데이트_성공() {
             // given
@@ -173,7 +171,6 @@ class PostServiceTest extends PostDataServiceTest {
     class 게시물_삭제 {
 
         @Test
-        @Transactional
         @DisplayName("게시물_삭제_성공")
         void 게시물_삭제_성공() {
             // given
@@ -186,8 +183,10 @@ class PostServiceTest extends PostDataServiceTest {
             // when
             postService.deletePost(post.getId(), avatar.getId());
 
+            Post actual = postRepository.findPostById(post.getId());
+
             // then
-            Assertions.assertEquals(0, post.getActive());
+            Assertions.assertNull(actual);
         }
     }
 
@@ -196,7 +195,6 @@ class PostServiceTest extends PostDataServiceTest {
     class Avatar_리스트_HashMap_변환 {
 
         @Test
-        @Transactional
         @DisplayName("Avatar_리스트_HashMap_변환")
         void Avatar_리스트_HashMap_변환() {
             // given

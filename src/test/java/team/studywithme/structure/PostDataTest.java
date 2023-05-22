@@ -1,4 +1,4 @@
-package team.studywithme.service.structure;
+package team.studywithme.structure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import team.studywithme.domain.entity.Avatar;
@@ -8,10 +8,14 @@ import team.studywithme.repository.CommentRepository;
 
 import java.util.List;
 
-public class PostDataServiceTest extends BoardDataServiceTest{
+public class PostDataTest extends BoardDataTest {
 
     @Autowired
     public CommentRepository commentRepository;
+
+    public Comment makeComment(Avatar avatar, Post post){
+        return commentRepository.saveAndFlush(new Comment(avatar, post, "content_1"));
+    }
 
     public List<Comment> makeCommentList(Avatar avatar, Post post){
         return commentRepository.saveAllAndFlush(List.of(
@@ -21,4 +25,12 @@ public class PostDataServiceTest extends BoardDataServiceTest{
         ));
     }
 
+    @Override
+    public void deleteAllRepository(){
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
+        boardRepository.deleteAll();
+        accountRepository.deleteAll();
+        avatarRepository.deleteAll();
+    }
 }

@@ -1,0 +1,7 @@
+= Avatar App API
+
+== Avatar
+
+=== /avatar/update
+==== 유저 변경
+operation::avatar/update[snippets='http-request,path-parameters,http-response,response-fields']

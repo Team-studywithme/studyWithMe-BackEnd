@@ -1,4 +1,4 @@
-package team.studywithme.service.structure;
+package team.studywithme.structure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import team.studywithme.domain.entity.Avatar;
@@ -9,7 +9,7 @@ import team.studywithme.repository.PostRepository;
 
 import java.util.List;
 
-public class BoardDataServiceTest extends UserDataServiceTest{
+public class BoardDataTest extends UserDataTest {
 
     @Autowired
     public BoardRepository boardRepository;
@@ -30,5 +30,13 @@ public class BoardDataServiceTest extends UserDataServiceTest{
                 new Post(avatar, board, 0, "title_B", "content_B"),
                 new Post(avatar, board, 0, "title_C", "content_C")
         ));
+    }
+
+    @Override
+    public void deleteAllRepository(){
+        postRepository.deleteAll();
+        boardRepository.deleteAll();
+        accountRepository.deleteAll();
+        avatarRepository.deleteAll();
     }
 }
