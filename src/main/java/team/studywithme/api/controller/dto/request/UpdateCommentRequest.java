@@ -17,4 +17,8 @@ public class UpdateCommentRequest {
 
     @NotEmpty(message = "댓글의 내용은 빈칸으로 변경하지 못합니다.")
     private String content;
+
+    public void setContent(String content){
+        this.content = content;
+    }
 }

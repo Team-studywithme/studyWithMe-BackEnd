@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false, of = {"id", "content", "nickname"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "content", "avatarID", "nickname"})
 public class CommentDetailResponse {
     private Long id;
     private String content;
+    private Long avatarID;
     private String nickname;
 }

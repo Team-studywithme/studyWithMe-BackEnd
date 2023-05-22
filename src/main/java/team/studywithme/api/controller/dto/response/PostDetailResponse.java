@@ -13,13 +13,14 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "nickname", "content", "hits", "commentDetailResponseList", "isNext"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "avatarID", "nickname", "content", "hits", "commentDetailResponseList", "isNext"})
 public class PostDetailResponse {
 
 
     private Long id;
     private String title;
     private LocalDateTime createdDate;
+    private Long avatarID;
     private String nickname;
     private String content;
     private int hits;
@@ -31,6 +32,7 @@ public class PostDetailResponse {
         this.title = post.getTitle();
         this.createdDate = post.getCreatedDate();
         this.hits = post.getHits();
+        this.avatarID = post.getAvatar().getId();
         this.nickname = avatar.getNickname();
         this.content = post.getContent();
         this.commentDetailResponseList = commentDetailResponseList;

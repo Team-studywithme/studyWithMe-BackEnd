@@ -43,24 +43,23 @@ class PostServiceTest extends PostDataServiceTest {
 
 
             int page = 0;
-            int size = 2;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
             for(int i=commentList.size() - 1;i>=1;i--){
                 comment = commentList.get(i);
                 commentDetailResponseList.add(new CommentDetailResponse(
-                        comment.getId(), comment.getContent(), avatar.getNickname()
+                        comment.getId(), comment.getContent(), avatar.getId(), avatar.getNickname()
                 ));
             }
 
             PostDetailResponse expect = new PostDetailResponse(
-                    post.getId(), post.getTitle(), post.getCreatedDate(),
+                    post.getId(), post.getTitle(), post.getCreatedDate(), post.getAvatar().getId(),
                     avatar.getNickname(), post.getContent(), 1, commentDetailResponseList, true
             );
 
             // when
-            PostDetailResponse actual = postService.detailPost(page, size, post.getId());
+            PostDetailResponse actual = postService.detailPost(page, post.getId());
 
             // then
             Assertions.assertEquals(expect, actual);
@@ -79,24 +78,23 @@ class PostServiceTest extends PostDataServiceTest {
             List<Comment> commentList = makeCommentList(avatar, post);
 
             int page = 1;
-            int size = 2;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
             for(int i=commentList.size() - 3;i>=0;i--){
                 comment = commentList.get(i);
                 commentDetailResponseList.add(new CommentDetailResponse(
-                        comment.getId(), comment.getContent(), avatar.getNickname()
+                        comment.getId(), comment.getContent(), avatar.getId(), avatar.getNickname()
                 ));
             }
 
             PostDetailResponse expect = new PostDetailResponse(
-                    post.getId(), post.getTitle(), post.getCreatedDate(),
+                    post.getId(), post.getTitle(), post.getCreatedDate(), post.getAvatar().getId(),
                     avatar.getNickname(), post.getContent(), 1, commentDetailResponseList, false
             );
 
             // when
-            PostDetailResponse actual = postService.detailPost(page, size, post.getId());
+            PostDetailResponse actual = postService.detailPost(page, post.getId());
 
             // then
             Assertions.assertEquals(expect, actual);

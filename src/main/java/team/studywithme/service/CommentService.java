@@ -9,6 +9,7 @@ import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.CommentRepository;
+import team.studywithme.utils.profanity.KoreanProfanityFilter;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,11 +17,13 @@ import team.studywithme.repository.CommentRepository;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final KoreanProfanityFilter koreanProfanityFilter;
 
     @Transactional
     public Comment createComment(CommentRequest commentRequest, Long avatarID){
         Comment comment = new Comment(
-                new Avatar(avatarID), new Post(commentRequest.getPost_id()), commentRequest.getContent());
+                new Avatar(avatarID), new Post(commentRequest.getPost_id()),
+                koreanProfanityFilter.filterProfanity(commentRequest.getContent()));
 
         return commentRepository.save(comment);
     }
@@ -36,6 +39,7 @@ public class CommentService {
             throw new IllegalArgumentException("댓글의 작성자가 아닙니다.");
         }
 
+        updateCommentRequest.setContent(koreanProfanityFilter.filterProfanity(updateCommentRequest.getContent()));
         comment.updateComment(updateCommentRequest);
         return comment;
     }
