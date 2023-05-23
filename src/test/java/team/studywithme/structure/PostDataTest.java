@@ -6,6 +6,7 @@ import team.studywithme.domain.entity.Comment;
 import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.CommentRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostDataTest extends BoardDataTest {
@@ -18,24 +19,18 @@ public class PostDataTest extends BoardDataTest {
     }
 
     public List<Comment> makeCommentList(Avatar avatar, Post post){
-        return commentRepository.saveAllAndFlush(List.of(
-                new Comment(avatar, post, "content_1"),
-                new Comment(avatar, post, "content_2"),
-                new Comment(avatar, post, "content_3"),
-                new Comment(avatar, post, "content_4"),
-                new Comment(avatar, post, "content_5"),
-                new Comment(avatar, post, "content_6")
-        ));
+        List<Comment> commentList = new ArrayList<>();
+
+        for(int i=0;i<6;i++){
+            commentList.add(commentRepository.saveAndFlush(new Comment(avatar, post, "content" + i)));
+        }
+
+        return commentList;
     }
 
     public List<Comment> makeLittleCommentList(Avatar avatar, Post post){
         return commentRepository.saveAllAndFlush(List.of(
-                new Comment(avatar, post, "content_1"),
-                new Comment(avatar, post, "content_2"),
-                new Comment(avatar, post, "content_3"),
-                new Comment(avatar, post, "content_4"),
-                new Comment(avatar, post, "content_5"),
-                new Comment(avatar, post, "content_6")
+                new Comment(avatar, post, "content_1")
         ));
     }
 

@@ -77,7 +77,7 @@ class PostServiceTest extends PostDataTest {
             Post post = makePost(avatar, board);
             List<Comment> commentList = makeLittleCommentList(avatar, post);
 
-            int page = 1;
+            int page = 0;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
