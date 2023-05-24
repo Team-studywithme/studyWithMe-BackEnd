@@ -13,6 +13,7 @@ import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AvatarRepository;
 import team.studywithme.repository.BoardRepository;
 import team.studywithme.repository.PostRepository;
+import team.studywithme.repository.elasticsearch.PostSearchRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +29,7 @@ public class BoardService {
     private final AvatarRepository avatarRepository;
     private final BoardRepository boardRepository;
     private final PostRepository postRepository;
+    private final PostSearchRepository postSearchRepository;
 
     public BoardResponse matchingBoard(int page, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
@@ -49,6 +51,14 @@ public class BoardService {
         Board board = boardRepository.findBoardByName(boardName);
 
         List<Post> postList = postRepository.findSearchPagePosts(PageRequest.of(page, post_size), keyword, board.getId());
+
+        return postListToBoardResponse(board, postList);
+    }
+
+    public BoardResponse matchingElasticSearchBoard(int page, String keyword, String boardName){
+        Board board = boardRepository.findBoardByName(boardName);
+
+        List<Post> postList = postSearchRepository.findPostsByKeywordContains(PageRequest.of(page, post_size), keyword, board.getId());
 
         return postListToBoardResponse(board, postList);
     }

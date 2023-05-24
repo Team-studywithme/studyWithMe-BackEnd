@@ -34,11 +34,20 @@ public class BoardApiController {
     }
 
     @GetMapping("/search_board")
-    public ResponseEntity<BoardResponse> myBoard(@RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity<BoardResponse> searchBoard(@RequestParam(value = "page", defaultValue = "0") int page,
                                                  @RequestParam(value = "keyword", defaultValue = "0") String keyword,
                                                  @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
         BoardResponse boardResponse = boardService.matchingSearchBoard(page, keyword, boardName);
+        return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
+    }
+
+    @GetMapping("/elasticsearch_board")
+    public ResponseEntity<BoardResponse> search(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                @RequestParam(value = "keyword") String keyword,
+                                                @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
+
+        BoardResponse boardResponse = boardService.matchingElasticSearchBoard(page, keyword, boardName);
         return ResponseEntity.status(HttpStatus.OK).body(boardResponse);
     }
 }

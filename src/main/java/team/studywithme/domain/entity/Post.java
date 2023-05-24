@@ -1,6 +1,7 @@
 package team.studywithme.domain.entity;
 
 import lombok.*;
+import org.springframework.data.elasticsearch.annotations.Document;
 import team.studywithme.api.controller.dto.request.UpdatePostRequest;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Document(indexName = "documents")
 public class Post extends BaseEntity{
 
     @Id

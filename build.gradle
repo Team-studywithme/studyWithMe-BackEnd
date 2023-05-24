@@ -49,6 +49,8 @@ dependencies {
 
 	asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor:${restDocsVersion}"
 	testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:${restDocsVersion}"
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 }
 
 tasks.named('test') {
