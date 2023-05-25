@@ -7,6 +7,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import team.studywithme.config.session.LoginAvatarId;
+import team.studywithme.config.session.SessionProperties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,6 @@ public class SessionArgumentResolver implements HandlerMethodArgumentResolver {
         HttpSession httpSession = request.getSession(false);
 
 
-        return httpSession.getAttribute("session");
+        return httpSession.getAttribute(SessionProperties.SESSION);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.transaction.annotation.Transactional;
+import team.studywithme.config.session.SessionProperties;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.service.AccountService;
 import team.studywithme.structure.UserDataTest;
@@ -96,7 +97,7 @@ class AccountApiControllerTest extends UserDataTest {
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/account/get";
 
             // when && then
@@ -122,7 +123,7 @@ class AccountApiControllerTest extends UserDataTest {
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/account/delete";
 
             // when && then

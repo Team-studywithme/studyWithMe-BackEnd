@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.request.NicknameRequest;
+import team.studywithme.config.session.SessionProperties;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.structure.UserDataTest;
 
@@ -40,7 +41,7 @@ class AvatarApiControllerTest extends UserDataTest {
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/avatar/update";
 
             // when && then

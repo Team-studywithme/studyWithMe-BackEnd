@@ -1,8 +1,7 @@
 package team.studywithme.api.controller.interceptor;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+import team.studywithme.config.session.SessionProperties;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession(false);
 
-        if(session == null || session.getAttribute("session") == null){
+        if(session == null || session.getAttribute(SessionProperties.SESSION) == null){
             throw new AuthenticationException("세션값이 없습니다.");
         }
 
