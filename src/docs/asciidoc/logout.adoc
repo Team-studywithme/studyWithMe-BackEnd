@@ -4,4 +4,4 @@
 
 === /loggout
 ==== 유저 로그아웃
-operation::logout[snippets='http-request,path-parameters,http-response,response-fields']
+operation::logout[snippets='http-request,http-response']

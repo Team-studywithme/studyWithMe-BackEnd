@@ -4,4 +4,4 @@
 
 === /account/get
 ==== 유저 조회
-operation::account/get[snippets='http-request,path-parameters,http-response,response-fields']
+operation::account/get[snippets='http-request,http-response']

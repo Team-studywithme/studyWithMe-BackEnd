@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
@@ -26,6 +27,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestF
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Transactional
 @ExtendWith({RestDocumentationExtension.class})
 class AvatarApiControllerTest extends UserDataTest {
     private MockHttpSession session;
@@ -42,7 +44,6 @@ class AvatarApiControllerTest extends UserDataTest {
     class 회원_정보수정{
 
         @Test
-        @Transactional
         @DisplayName("[AVATAR] 회원 정보수정 성공 테스트")
         void 회원_정보수정_성공_테스트() throws Exception{
             // given
@@ -63,7 +64,8 @@ class AvatarApiControllerTest extends UserDataTest {
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint()),
                             requestFields(
-                            fieldWithPath("nickname").description("변경시킬 유저의 닉네임"))
+                                    fieldWithPath("nickname").type(JsonFieldType.STRING).description("변경시킬 유저의 닉네임")
+                            )
                     ))
                     .andExpect(status().isOk());
         }

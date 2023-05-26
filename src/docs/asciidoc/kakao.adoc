@@ -4,4 +4,4 @@
 
 === /kakao
 ==== 카카오 로그인
-operation::kakao[snippets='http-request,path-parameters,http-response,response-fields']
+operation::kakao[snippets='request-parameters,http-request,response-fields,http-response']

@@ -4,4 +4,4 @@
 
 === /avatar/update
 ==== 유저 변경
-operation::avatar/update[snippets='http-request,path-parameters,http-response,response-fields']
+operation::avatar/update[snippets='request-fields,http-request,http-response']
