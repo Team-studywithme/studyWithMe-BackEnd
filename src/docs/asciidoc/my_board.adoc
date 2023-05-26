@@ -4,4 +4,4 @@
 
 === /my_board
 ==== 내 게시물 확인
-operation::my_board[snippets='http-request,path-parameters,http-response,response-fields']
+operation::my_board[snippets='http-request,http-response,response-fields']

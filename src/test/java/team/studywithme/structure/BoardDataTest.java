@@ -31,6 +31,11 @@ public class BoardDataTest extends UserDataTest {
 
         for(int i=0;i<3;i++){
             postList.add(postRepository.saveAndFlush(new Post(avatar, board, 0, "title_" + i, "content_" + i)));
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return postList;

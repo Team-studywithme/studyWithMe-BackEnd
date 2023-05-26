@@ -23,6 +23,11 @@ public class PostDataTest extends BoardDataTest {
 
         for(int i=0;i<6;i++){
             commentList.add(commentRepository.saveAndFlush(new Comment(avatar, post, "content" + i)));
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return commentList;

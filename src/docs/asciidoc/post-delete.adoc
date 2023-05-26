@@ -4,4 +4,4 @@
 
 === /post
 ==== 게시물 삭제
-operation::post-delete[snippets='http-request,path-parameters,http-response,response-fields']
+operation::post-delete[snippets='request-parameters,http-request,http-response']

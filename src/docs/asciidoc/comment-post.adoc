@@ -4,4 +4,4 @@
 
 === /comment
 ==== 댓글 생성
-operation::comment-post[snippets='http-request,path-parameters,http-response,response-fields']
+operation::comment-post[snippets='request-fields,http-request,http-response']

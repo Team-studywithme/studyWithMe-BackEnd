@@ -4,4 +4,4 @@
 
 === /post
 ==== 게시물 생성
-operation::post-post[snippets='http-request,path-parameters,http-response,response-fields']
+operation::post-post[snippets='request-fields,http-request,http-response']

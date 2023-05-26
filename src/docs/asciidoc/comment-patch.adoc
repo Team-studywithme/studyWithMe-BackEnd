@@ -4,4 +4,4 @@
 
 === /comment
 ==== 댓글 수정
-operation::comment-patch[snippets='http-request,path-parameters,http-response,response-fields']
+operation::comment-patch[snippets='request-fields,http-request,http-response']

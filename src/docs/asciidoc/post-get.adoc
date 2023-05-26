@@ -4,4 +4,4 @@
 
 === /post
 ==== 게시물 조회
-operation::post-get[snippets='http-request,path-parameters,http-response,response-fields']
+operation::post-get[snippets='request-parameters,http-request,response-fields,http-response']

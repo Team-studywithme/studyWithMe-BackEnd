@@ -4,4 +4,4 @@
 
 === /comment
 ==== 댓글 삭제
-operation::comment-delete[snippets='http-request,path-parameters,http-response,response-fields']
+operation::comment-delete[snippets='request-parameters,http-request,http-response']

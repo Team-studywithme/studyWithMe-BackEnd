@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "avatarID", "nickname", "content", "hits", "commentDetailResponseList", "isNext"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "title", "createdDate", "avatarID", "nickname", "content", "hits", "commentDetailResponseList", "next"})
 public class PostDetailResponse {
 
 
@@ -25,7 +25,7 @@ public class PostDetailResponse {
     private String content;
     private int hits;
     private List<CommentDetailResponse> commentDetailResponseList;
-    private boolean isNext;
+    private boolean next;
 
     public PostDetailResponse postCommentToPostDetailResponse(Post post, Avatar avatar, List<CommentDetailResponse> commentDetailResponseList, boolean hasNext){
         this.id = post.getId();
@@ -36,7 +36,7 @@ public class PostDetailResponse {
         this.nickname = avatar.getNickname();
         this.content = post.getContent();
         this.commentDetailResponseList = commentDetailResponseList;
-        this.isNext = hasNext;
+        this.next = hasNext;
 
         return this;
     }
