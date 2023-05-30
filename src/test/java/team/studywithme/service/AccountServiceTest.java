@@ -3,17 +3,14 @@ package team.studywithme.service;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.structure.UserDataTest;
 import team.studywithme.utils.kakao.KakaoAuthorizationInfo;
-import team.studywithme.utils.kakao.MockKakaoLoginUtilsImpl;
 
 
-@Import(MockKakaoLoginUtilsImpl.class)
 class AccountServiceTest extends UserDataTest {
 
     @Autowired

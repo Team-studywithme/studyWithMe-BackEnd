@@ -2,11 +2,8 @@ package team.studywithme.service;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
-import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.domain.entity.*;
 import team.studywithme.structure.UserDataTest;
-import team.studywithme.utils.kakao.MockKakaoLoginUtilsImpl;
 
 class AvatarServiceTest extends UserDataTest {
 

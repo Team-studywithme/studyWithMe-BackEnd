@@ -2,7 +2,6 @@ package team.studywithme.service;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.request.CommentRequest;
 import team.studywithme.api.controller.dto.request.UpdateCommentRequest;
 import team.studywithme.domain.entity.Avatar;

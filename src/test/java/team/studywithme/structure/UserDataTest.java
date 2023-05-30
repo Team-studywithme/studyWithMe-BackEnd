@@ -1,7 +1,6 @@
 package team.studywithme.structure;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
