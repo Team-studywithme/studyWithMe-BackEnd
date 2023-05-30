@@ -24,12 +24,12 @@ public class CommentServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("댓글_생성")
+    @DisplayName("[Service][Comment] 댓글 생성")
     class 댓글_생성 {
 
         @Test
-        @DisplayName("댓글_생성")
-        void 댓글_생성() {
+        @DisplayName("[Service][Comment] 댓글 생성 성공 테스트")
+        void 댓글_생성_성공_테스트() {
             // given
             String content = "example_content_test";
 
@@ -54,12 +54,12 @@ public class CommentServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("댓글_변경")
+    @DisplayName("[Service][Comment] 댓글 변경")
     class 댓글_변경 {
 
         @Test
-        @DisplayName("댓글_생성")
-        void 댓글_생성() {
+        @DisplayName("[Service][Comment] 댓글 변경 성공 테스트")
+        void 댓글_변경_성공_테스트() {
             // given
             String content = "update_content_test";
 
@@ -85,12 +85,12 @@ public class CommentServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("댓글_삭제")
+    @DisplayName("[Service][Comment] 댓글 삭제")
     class 댓글_삭제 {
 
         @Test
-        @DisplayName("댓글_삭제")
-        void 댓글_삭제() {
+        @DisplayName("[Service][Comment] 댓글 삭제 성공 테스트")
+        void 댓글_삭제_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);

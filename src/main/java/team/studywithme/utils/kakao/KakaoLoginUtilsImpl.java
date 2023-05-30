@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +20,7 @@ import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 
 @Slf4j
 @Component
+@Primary
 @Profile("default")
 @RequiredArgsConstructor
 public class KakaoLoginUtilsImpl implements KakaoLoginUtils {

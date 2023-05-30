@@ -93,12 +93,12 @@ class AccountServiceTest extends UserDataTest {
     }
 
     @Nested
-    @DisplayName("회원_정보조회")
+    @DisplayName("[Service][Account] 회원 정보조회")
     class 회원_정보조회{
 
         @Test
-        @DisplayName("회원_정보조회_성공")
-        void 회원_정보조회_성공(){
+        @DisplayName("[Service][Account] 회원 정보조회 성공 테스트")
+        void 회원_정보조회_성공_테스트(){
             // given
             Avatar avatar = makeAvatar();
             Account account = makeAccount(avatar);
@@ -115,12 +115,12 @@ class AccountServiceTest extends UserDataTest {
     }
 
     @Nested
-    @DisplayName("회원_정보삭제")
+    @DisplayName("[Service][Account] 회원 정보삭제")
     class 회원_정보삭제{
 
         @Test
-        @DisplayName("회원_정보삭제_성공")
-        void 회원_정보삭제_성공(){
+        @DisplayName("[Service][Account] 회원 정보삭제 성공 테스트")
+        void 회원_정보삭제_성공_테스트(){
             // given
             Avatar avatar = makeAvatar();
             Account account = makeAccount(avatar);

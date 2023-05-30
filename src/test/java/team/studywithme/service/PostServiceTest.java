@@ -28,12 +28,12 @@ class PostServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시물_상세정보_조회")
+    @DisplayName("[Service][Post] 게시물 상세정보 조회")
     class 게시물_상세정보_조회{
 
         @Test
-        @DisplayName("게시물_상세정보_조회_댓글이_더있을때")
-        void 게시물_상세정보_조회_댓글이_더있을때() {
+        @DisplayName("[Service][Post] 게시물 상세정보 조회 성공 테스트 - 댓글이 더있을때")
+        void 게시물_상세정보_조회_성공_테스트_댓글이_더있을때() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -67,8 +67,8 @@ class PostServiceTest extends PostDataTest {
         }
 
         @Test
-        @DisplayName("게시물_상세정보_조회_댓글이_더없을때")
-        void 게시물_상세정보_조회_댓글이_더없을때() {
+        @DisplayName("[Service][Post] 게시물 상세정보 조회 성공 테스트 - 댓글이 더없을때")
+        void 게시물_상세정보_조회_성공_테스트_댓글이_더없을때() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -102,12 +102,12 @@ class PostServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시물_생성")
+    @DisplayName("[Service][Post] 게시물 생성")
     class 게시물_생성 {
 
         @Test
-        @DisplayName("게시물_생성_성공")
-        void 게시물_생성_성공() {
+        @DisplayName("[Service][Post] 게시물 생성 성공 테스트")
+        void 게시물_생성_성공_테스트() {
             // given
             String title = "example_title_test";
             String content = "example_content_test";
@@ -134,12 +134,12 @@ class PostServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시물_업데이트")
+    @DisplayName("[Service][Post] 게시물 업데이트")
     class 게시물_업데이트 {
 
         @Test
-        @DisplayName("게시물_업데이트_성공")
-        void 게시물_업데이트_성공() {
+        @DisplayName("[Service][Post] 게시물 업데이트 성공 테스트")
+        void 게시물_업데이트_성공_테스트() {
             // given
             String title = "example_title_test";
             String content = "update_content_test";
@@ -167,12 +167,12 @@ class PostServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시물_삭제")
+    @DisplayName("[Service][Post] 게시물 삭제")
     class 게시물_삭제 {
 
         @Test
-        @DisplayName("게시물_삭제_성공")
-        void 게시물_삭제_성공() {
+        @DisplayName("[Service][Post] 게시물 삭제 성공 테스트")
+        void 게시물_삭제_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -191,12 +191,12 @@ class PostServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("Avatar_리스트_HashMap_변환")
+    @DisplayName("[Service][Post] Avatar 리스트 HashMap 변환")
     class Avatar_리스트_HashMap_변환 {
 
         @Test
-        @DisplayName("Avatar_리스트_HashMap_변환")
-        void Avatar_리스트_HashMap_변환() {
+        @DisplayName("[Service][Post] Avatar 리스트 HashMap 변환 성공 테스트")
+        void Avatar_리스트_HashMap_변환_성공_테스트() {
             // given
             List<Avatar> avatarList = List.of(
                     new Avatar("example_1"),
