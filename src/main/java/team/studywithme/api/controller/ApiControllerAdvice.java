@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import team.studywithme.api.controller.dto.response.IllegalArgumentExceptionResponse;
+import team.studywithme.api.controller.dto.response.RuntimeExceptionResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,16 @@ public class ApiControllerAdvice {
         exceptionResponse.setExceptionMessage(ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(exceptionResponse);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<RuntimeExceptionResponse> RuntimeException(RuntimeException ex){
+        RuntimeExceptionResponse exceptionResponse = new RuntimeExceptionResponse();
+
+        exceptionResponse.setExceptionMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exceptionResponse);
     }
 }

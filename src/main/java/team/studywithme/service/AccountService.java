@@ -2,24 +2,17 @@ package team.studywithme.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 import team.studywithme.api.controller.dto.response.UserResponse;
 import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
-import team.studywithme.domain.entity.Comment;
-import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.AccountRepository;
 import team.studywithme.repository.AvatarRepository;
 import team.studywithme.repository.CommentRepository;
 import team.studywithme.repository.PostRepository;
 import team.studywithme.utils.kakao.KakaoLoginUtils;
-
-import java.util.List;
 
 
 @Slf4j
@@ -44,7 +37,7 @@ public class AccountService {
         return avatar.getId();
     }
 
-    public Avatar createUser(Account account, KakaoUserInfoDto kakaoUserInfo){
+    private Avatar createUser(Account account, KakaoUserInfoDto kakaoUserInfo){
         Avatar avatar = null;
 
         // 서비스 등록 회원 처음일때

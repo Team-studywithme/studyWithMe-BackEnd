@@ -22,4 +22,14 @@ public class KakaoAuthorizationInfo {
     private String userInfoUri = "https://kapi.kakao.com/v2/user/me";
 
     private String token_remove_uri = "https://kapi.kakao.com/v1/user/logout";
+
+    public static String SUCCESS_KAKAO = "success_kakao";
+
+    public static String JSON_PROCESSING_EXCEOTION = "json_processing_exception";
+
+    public static String USERINFO_EXCEPTION = "user_info_exception";
+
+    public static String EXPIRE_EXCEPTION = "expire_exception";
+
+    public static String ACCESS_TOKEN_EXCEPTION = "access_token_exception";
 }

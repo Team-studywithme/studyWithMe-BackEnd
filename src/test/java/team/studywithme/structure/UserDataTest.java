@@ -6,8 +6,10 @@ import team.studywithme.domain.entity.Account;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.repository.AccountRepository;
 import team.studywithme.repository.AvatarRepository;
+import team.studywithme.utils.kakao.KakaoAuthorizationInfo;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UserDataTest extends BaseDataTest {
 
@@ -18,7 +20,11 @@ public class UserDataTest extends BaseDataTest {
     public AccountRepository accountRepository;
 
     public Account makeAccount(Avatar avatar){
-        return accountRepository.saveAndFlush(new Account("33445516", "test@gamil.com", avatar));
+        return accountRepository.saveAndFlush(new Account(UUID.randomUUID().toString().substring(0, 8), "test@gamil.com", avatar));
+    }
+
+    public Account makeKakaoAccount(Avatar avatar){
+        return accountRepository.saveAndFlush(new Account(KakaoAuthorizationInfo.SUCCESS_KAKAO, "test@gamil.com", avatar));
     }
 
     public Avatar makeAvatar(){
@@ -31,10 +37,6 @@ public class UserDataTest extends BaseDataTest {
                 new Avatar("Example_B"),
                 new Avatar("Example_C")
         ));
-    }
-
-    public KakaoUserInfoDto makeKakaoUserInfo(){
-        return new KakaoUserInfoDto("481308431", "test@naver.com");
     }
 
     public void deleteAllRepository(){
