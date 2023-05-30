@@ -20,7 +20,6 @@ import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 
 @Slf4j
 @Component
-@Primary
 @Profile("default")
 @RequiredArgsConstructor
 public class KakaoLoginUtilsImpl implements KakaoLoginUtils {
