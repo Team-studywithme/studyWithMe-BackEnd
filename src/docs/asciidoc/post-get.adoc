@@ -1,0 +1,7 @@
+= Post App API
+
+== Post
+
+=== /post
+==== 게시물 조회
+operation::post-get[snippets='request-parameters,http-request,response-fields,http-response']

@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-@AutoConfigureRestDocs
 public class BaseDataTest {
 
     @Autowired

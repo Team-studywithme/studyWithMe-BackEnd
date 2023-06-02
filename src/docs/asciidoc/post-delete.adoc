@@ -1,0 +1,7 @@
+= Post App API
+
+== Post
+
+=== /post
+==== 게시물 삭제
+operation::post-delete[snippets='request-parameters,http-request,http-response']

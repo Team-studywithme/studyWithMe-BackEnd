@@ -7,6 +7,7 @@ import team.studywithme.domain.entity.Post;
 import team.studywithme.repository.BoardRepository;
 import team.studywithme.repository.PostRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardDataTest extends UserDataTest {
@@ -25,11 +26,19 @@ public class BoardDataTest extends UserDataTest {
     }
 
     public List<Post> makePostList(Avatar avatar, Board board){
-        return postRepository.saveAllAndFlush(List.of(
-                new Post(avatar, board, 0, "title_A", "content_A"),
-                new Post(avatar, board, 0, "title_B", "content_B"),
-                new Post(avatar, board, 0, "title_C", "content_C")
-        ));
+
+        List<Post> postList = new ArrayList<>();
+
+        for(int i=0;i<3;i++){
+            postList.add(postRepository.saveAndFlush(new Post(avatar, board, 0, "title_" + i, "content_" + i)));
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return postList;
     }
 
     @Override
