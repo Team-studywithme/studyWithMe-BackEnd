@@ -10,6 +10,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
+import team.studywithme.config.session.SessionProperties;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.structure.BoardDataTest;
@@ -25,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Transactional
 @ExtendWith({RestDocumentationExtension.class})
-@AutoConfigureRestDocs
 class BoardApiControllerTest extends BoardDataTest {
 
     private MockHttpSession session;
@@ -92,7 +92,7 @@ class BoardApiControllerTest extends BoardDataTest {
             Board board = makeBoard();
             makePostList(avatar, board);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/my_board";
 
             // when && then

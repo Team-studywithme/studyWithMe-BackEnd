@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import team.studywithme.api.controller.dto.request.CommentRequest;
 import team.studywithme.api.controller.dto.request.UpdateCommentRequest;
+import team.studywithme.config.session.SessionProperties;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Comment;
@@ -63,7 +64,7 @@ class CommentApiControllerTest extends PostDataTest {
             Post post = makePost(avatar, board);
             Comment comment = makeComment(avatar, post);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/comment";
             String content = objectMapper.writeValueAsString(new CommentRequest(
                     post.getId(), comment.getContent()
@@ -100,7 +101,7 @@ class CommentApiControllerTest extends PostDataTest {
             Post post = makePost(avatar, board);
             Comment comment = makeComment(avatar, post);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/comment";
             String content = objectMapper.writeValueAsString(new UpdateCommentRequest(
                     comment.getId(), comment.getContent()
@@ -137,7 +138,7 @@ class CommentApiControllerTest extends PostDataTest {
             Post post = makePost(avatar, board);
             Comment comment = makeComment(avatar, post);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/comment?commentID=" + comment.getId();
 
             // when && then

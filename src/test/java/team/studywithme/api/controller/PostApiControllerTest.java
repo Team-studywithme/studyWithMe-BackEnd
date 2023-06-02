@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import team.studywithme.api.controller.dto.request.PostRequest;
 import team.studywithme.api.controller.dto.request.UpdatePostRequest;
+import team.studywithme.config.session.SessionProperties;
 import team.studywithme.domain.entity.Avatar;
 import team.studywithme.domain.entity.Board;
 import team.studywithme.domain.entity.Post;
@@ -60,7 +61,7 @@ class PostApiControllerTest extends PostDataTest {
             Post post = makePost(avatar, board);
             makeCommentList(avatar, post);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/post?postID=" + post.getId();
 
             // when && then
@@ -106,7 +107,7 @@ class PostApiControllerTest extends PostDataTest {
             Board board = makeBoard();
             Post post = makePost(avatar, board);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/post";
             String content = objectMapper.writeValueAsString(new PostRequest(
                     board.getId(), post.getTitle(), post.getContent()
@@ -143,7 +144,7 @@ class PostApiControllerTest extends PostDataTest {
             Board board = makeBoard();
             Post post = makePost(avatar, board);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/post";
             String content = objectMapper.writeValueAsString(new UpdatePostRequest(
                     post.getId(), "change_title", "change_content"
@@ -180,7 +181,7 @@ class PostApiControllerTest extends PostDataTest {
             Board board = makeBoard();
             Post post = makePost(avatar, board);
 
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
             String url = "/post?postID=" + post.getId();
 
             // when && then

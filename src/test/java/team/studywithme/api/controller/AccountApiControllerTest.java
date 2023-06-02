@@ -86,7 +86,7 @@ class AccountApiControllerTest extends UserDataTest {
 
             // given
             String url = "/logout";
-            session.setAttribute("session", avatar.getId());
+            session.setAttribute(SessionProperties.SESSION, avatar.getId());
 
             // when && then
             mockMvc.perform(get(url)
@@ -94,7 +94,7 @@ class AccountApiControllerTest extends UserDataTest {
                     .andDo(document("logout",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
-                    .andExpect(status().is4xxClientError());
+                    .andExpect(status().isOk());
         }
     }
 
