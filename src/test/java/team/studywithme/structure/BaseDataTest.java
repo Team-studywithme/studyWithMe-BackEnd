@@ -15,7 +15,6 @@ import team.studywithme.utils.kakao.MockKakaoLoginUtilsImpl;
 @ActiveProfiles("test")
 @Import(MockKakaoLoginUtilsImpl.class)
 @AutoConfigureMockMvc
-@AutoConfigureRestDocs
 public class BaseDataTest {
 
     @Autowired

@@ -30,7 +30,7 @@ public class PostApiController {
     @PostMapping("/post")
     public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest postRequest,
                                         @LoginAvatarId Long avatarID){
-
+        System.out.println("avatarID : " + avatarID);
         postService.createPost(postRequest, avatarID);
         return ResponseEntity.ok(null);
     }
@@ -39,6 +39,7 @@ public class PostApiController {
     public ResponseEntity<?> updatePost(@Valid @RequestBody UpdatePostRequest updatePostRequest,
                                         @LoginAvatarId Long avatarID){
 
+        System.out.println("avatarID : " + avatarID);
         postService.updatePost(updatePostRequest, avatarID);
         return ResponseEntity.ok(null);
     }

@@ -35,7 +35,7 @@ public class BoardApiController {
 
     @GetMapping("/search_board")
     public ResponseEntity<BoardResponse> myBoard(@RequestParam(value = "page", defaultValue = "0") int page,
-                                                 @RequestParam(value = "keyword", defaultValue = "0") String keyword,
+                                                 @RequestParam String keyword,
                                                  @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
         BoardResponse boardResponse = boardService.matchingSearchBoard(page, keyword, boardName);

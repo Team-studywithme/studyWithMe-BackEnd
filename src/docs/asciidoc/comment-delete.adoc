@@ -1,0 +1,7 @@
+= Comment App API
+
+== Comment
+
+=== /comment
+==== 댓글 삭제
+operation::comment-delete[snippets='request-parameters,http-request,http-response']
