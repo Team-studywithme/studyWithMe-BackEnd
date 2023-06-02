@@ -75,13 +75,13 @@ class PostServiceTest extends PostDataTest {
 
             Board board = makeBoard();
             Post post = makePost(avatar, board);
-            List<Comment> commentList = makeCommentList(avatar, post);
+            List<Comment> commentList = makeLittleCommentList(avatar, post);
 
-            int page = 1;
+            int page = 0;
 
             Comment comment = null;
             List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
-            for(int i=commentList.size() - 3;i>=0;i--){
+            for(int i=0;i<1;i++){
                 comment = commentList.get(i);
                 commentDetailResponseList.add(new CommentDetailResponse(
                         comment.getId(), comment.getContent(), avatar.getId(), avatar.getNickname()

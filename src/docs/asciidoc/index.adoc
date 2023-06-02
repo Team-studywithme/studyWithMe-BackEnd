@@ -11,6 +11,7 @@
 == APIs
 
 === Account API
+
 * link:kakao.html[카카오 로그인 API, window=_blank]
 
 * link:logout.html[회원 로그아웃 API, window=_blank]
@@ -23,3 +24,32 @@
 === Avatar API
 
 * link:avatar_update.html[회원 수정 API, window=_blank]
+
+
+=== Board API
+
+* link:board-get.html[게시판 조회 API, window=_blank]
+
+* link:my_board.html[내 게시판 조회 API, window=_blank]
+
+* link:search_board.html[검색 게시판 조회 API, window=_blank]
+
+=== Post API
+
+* link:post-get.html[게시물 조회 API, window=_blank]
+
+* link:post-post.html[게시물 생성 API, window=_blank]
+
+* link:post-patch.html[게시물 수정 API, window=_blank]
+
+* link:post-delete.html[게시물 삭제 API, window=_blank]
+
+
+=== Avatar API
+
+* link:comment-post.html[댓글 생성 API, window=_blank]
+
+* link:comment-patch.html[댓글 수정 API, window=_blank]
+
+* link:comment-delete.html[댓글 삭제 API, window=_blank]
+

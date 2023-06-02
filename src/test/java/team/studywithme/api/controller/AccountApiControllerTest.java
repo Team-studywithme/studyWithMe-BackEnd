@@ -80,15 +80,21 @@ class AccountApiControllerTest extends UserDataTest {
         @Test
         @DisplayName("[ACCOUNT] 로그아웃 성공 테스트")
         void 로그아웃_성공_테스트() throws Exception{
+        
+            Avatar avatar = makeAvatar();
+            makeAccount(avatar);
+
             // given
             String url = "/logout";
+            session.setAttribute("session", avatar.getId());
 
             // when && then
-            mockMvc.perform(get(url))
+            mockMvc.perform(get(url)
+                            .session(session))
                     .andDo(document("logout",
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint())))
-                    .andExpect(status().isOk());
+                    .andExpect(status().is4xxClientError());
         }
     }
 

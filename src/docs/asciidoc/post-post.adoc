@@ -1,0 +1,7 @@
+= Post App API
+
+== Post
+
+=== /post
+==== 게시물 생성
+operation::post-post[snippets='request-fields,http-request,http-response']
