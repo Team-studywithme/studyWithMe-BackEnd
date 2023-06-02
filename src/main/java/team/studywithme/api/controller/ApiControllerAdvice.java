@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import team.studywithme.api.controller.dto.response.AuthenticationExceptionResponse;
 import team.studywithme.api.controller.dto.response.IllegalArgumentExceptionResponse;
+import team.studywithme.api.controller.dto.response.RuntimeExceptionResponse;
 
 import javax.naming.AuthenticationException;
 import java.util.HashMap;
@@ -40,6 +41,16 @@ public class ApiControllerAdvice {
                 .body(exceptionResponse);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<RuntimeExceptionResponse> RuntimeException(RuntimeException ex){
+        RuntimeExceptionResponse exceptionResponse = new RuntimeExceptionResponse();
+
+        exceptionResponse.setExceptionMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(exceptionResponse);
+    }
+  
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<AuthenticationExceptionResponse> AuthenticationException(AuthenticationException ex){
         AuthenticationExceptionResponse exceptionResponse = new AuthenticationExceptionResponse();

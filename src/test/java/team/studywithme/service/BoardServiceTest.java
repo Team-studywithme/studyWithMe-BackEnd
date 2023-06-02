@@ -25,12 +25,12 @@ class BoardServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("매칭게시판을_조회")
+    @DisplayName("[Service][Board] 매칭게시판을 조회")
     class 매칭게시판을_조회{
 
         @Test
-        @DisplayName("매칭게시판을_조회")
-        void 매칭게시판을_조회() {
+        @DisplayName("[Service][Board] 매칭게시판을 조회 성공 테스트")
+        void 매칭게시판을_조회_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -60,13 +60,13 @@ class BoardServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("내_게시판을_조회")
+    @DisplayName("[Service][Board] 내 게시판을 조회")
     class 내_게시판을_조회{
 
         @Test
         @Transactional
-        @DisplayName("내_게시판을_조회")
-        void 내_게시판을_조회() {
+        @DisplayName("[Service][Board] 내 게시판을 조회 성공 테스트")
+        void 내_게시판을_조회_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -96,13 +96,13 @@ class BoardServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시판을_검색")
+    @DisplayName("[Service][Board] 게시판을 검색")
     class 게시판을_검색{
 
         @Test
         @Transactional
-        @DisplayName("게시판을_검색")
-        void 게시판을_검색() {
+        @DisplayName("[Service][Board] 게시판을 검색 성공 테스트")
+        void 게시판을_검색_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);
@@ -133,13 +133,13 @@ class BoardServiceTest extends PostDataTest {
     }
 
     @Nested
-    @DisplayName("게시물리스트로_게시판응답만들기")
-    class 게시물리스트로_게시판응답만들기{
+    @DisplayName("[Service][Board] 게시물 리스트로 게시판 응답 만들기")
+    class 게시물_리스트로_게시판_응답_만들기{
 
         @Test
         @Transactional
-        @DisplayName("게시물리스트로_게시판응답만들기_성공")
-        void 게시물리스트로_게시판응답만들기_성공() {
+        @DisplayName("[Service][Board] 게시물 리스트로 게시판 응답 만들기 성공 테스트")
+        void 게시물_리스트로_게시판_응답_만들기_성공_테스트() {
             // given
             Avatar avatar = makeAvatar();
             makeAccount(avatar);

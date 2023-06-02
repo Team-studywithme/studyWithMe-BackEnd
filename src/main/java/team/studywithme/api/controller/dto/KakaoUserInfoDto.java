@@ -4,6 +4,7 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class KakaoUserInfoDto {
     private String kakaoServerId;
 
