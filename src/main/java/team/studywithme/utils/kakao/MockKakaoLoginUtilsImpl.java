@@ -1,8 +1,10 @@
 package team.studywithme.utils.kakao;
 
 import org.springframework.boot.test.context.TestComponent;
+import org.springframework.context.annotation.Profile;
 import team.studywithme.api.controller.dto.KakaoUserInfoDto;
 
+@Profile("test")
 @TestComponent
 public class MockKakaoLoginUtilsImpl implements KakaoLoginUtils{
 
