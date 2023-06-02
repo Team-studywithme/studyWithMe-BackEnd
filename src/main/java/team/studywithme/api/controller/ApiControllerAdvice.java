@@ -6,8 +6,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import team.studywithme.api.controller.dto.response.AuthenticationExceptionResponse;
 import team.studywithme.api.controller.dto.response.IllegalArgumentExceptionResponse;
 
+import javax.naming.AuthenticationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +33,16 @@ public class ApiControllerAdvice {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<IllegalArgumentExceptionResponse> IllegalArgumentException(IllegalArgumentException ex){
         IllegalArgumentExceptionResponse exceptionResponse = new IllegalArgumentExceptionResponse();
+
+        exceptionResponse.setExceptionMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(exceptionResponse);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<AuthenticationExceptionResponse> AuthenticationException(AuthenticationException ex){
+        AuthenticationExceptionResponse exceptionResponse = new AuthenticationExceptionResponse();
 
         exceptionResponse.setExceptionMessage(ex.getMessage());
 

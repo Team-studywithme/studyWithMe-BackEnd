@@ -17,7 +17,7 @@ public class AvatarApiController {
     private final AvatarService avatarService;
 
 
-    @PostMapping("/avatar/update")
+    @PatchMapping("/avatar/update")
     public ResponseEntity<?> update(@Valid @RequestBody NicknameRequest nicknameRequest, @LoginAvatarId Long avatarId){
 
         int result = avatarService.update(avatarId, nicknameRequest.getNickname());
