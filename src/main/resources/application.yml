@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/project
-    username: root #do not touch username
-    password: root #do not touch poassword
+    url: ${SPRING_DATASOURCE_URL}
+    username: admin #do not touch username
+    password: ${SPRING_DATASOURCE_PASSWORD} #do not touch poassword
 
   session:
     store-type: jdbc
@@ -15,16 +15,18 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     properties:
+      hibernate:
         show_sql: true
         format_sql: true
     show-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
+    defer-datasource-initialization: true
 
 
   kakao:
-    id: ${SECRET}
+    id: ${SPRING_KAKAO_ID}
 
   sql:
     init:
