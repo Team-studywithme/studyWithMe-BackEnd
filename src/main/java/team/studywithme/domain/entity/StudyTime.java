@@ -1,20 +1,19 @@
 package team.studywithme.domain.entity;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.TemporalAmount;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Timer extends BaseEntity{
+public class StudyTime extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,21 +27,16 @@ public class Timer extends BaseEntity{
     private LocalDate studyDate;
 
     @Column(nullable = false)
-    private LocalTime startTime;
+    private LocalTime studyTime;
 
-    @Column(nullable = false)
-    private LocalTime endTime;
-
-    public Timer(Avatar avatar){
+    public StudyTime(Avatar avatar) {
         this.avatar = avatar;
         this.studyDate = LocalDate.now();
-        this.startTime = LocalTime.now().withNano(0);
-        this.endTime = LocalTime.of(0,0,0).withNano(0);
-
+        this.studyTime = LocalTime.of(0,0,0);
     }
 
-    public void setEndTime(LocalTime endTime){
-        this.endTime = endTime.withNano(0);
+    public void addStudyTime(TemporalAmount addTime){
+        this.studyTime = studyTime.plus(addTime);
     }
 
 }
