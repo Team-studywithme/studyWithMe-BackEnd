@@ -15,5 +15,7 @@ public class BoardResponse {
 
     private String name;
 
+    private int totalPages;
+
     private List<PostResponse> postResponseList;
 }

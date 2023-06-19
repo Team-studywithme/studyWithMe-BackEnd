@@ -49,7 +49,7 @@ class BoardServiceTest extends PostDataTest {
                         post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
-            BoardResponse expect = new BoardResponse(boardName, postResponseList);
+            BoardResponse expect = new BoardResponse(boardName, Math.round((float) postList.size() / post_size), postResponseList);
 
             // when
             BoardResponse actual = boardService.matchingBoard(page, boardName);
@@ -85,7 +85,7 @@ class BoardServiceTest extends PostDataTest {
                         post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
-            BoardResponse expect = new BoardResponse(boardName, postResponseList);
+            BoardResponse expect = new BoardResponse(boardName, Math.round((float) postList.size() / post_size), postResponseList);
 
             // when
             BoardResponse actual = boardService.matchingMyBoard(page, avatar.getId(), boardName);
@@ -122,7 +122,7 @@ class BoardServiceTest extends PostDataTest {
                         post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
-            BoardResponse expect = new BoardResponse(boardName, postResponseList);
+            BoardResponse expect = new BoardResponse(boardName, Math.round((float) postList.size() / post_size), postResponseList);
 
             // when
             BoardResponse actual = boardService.matchingSearchBoard(page, keyword, boardName);
@@ -157,10 +157,10 @@ class BoardServiceTest extends PostDataTest {
                         post.getCreatedDate(), avatar.getId(), avatar.getNickname()));
             }
 
-            BoardResponse expect = new BoardResponse(boardName, postResponseList);
+            BoardResponse expect = new BoardResponse(boardName, Math.round((float) postList.size() / post_size), postResponseList);
 
             // when
-            BoardResponse actual = boardService.postListToBoardResponse(board, postList);
+            BoardResponse actual = boardService.postPageToBoardResponse(board, Math.round((float) postList.size() / post_size), postList);
 
             // then
             Assertions.assertEquals(expect, actual);

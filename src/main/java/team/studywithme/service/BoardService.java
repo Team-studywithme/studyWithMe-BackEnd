@@ -1,6 +1,7 @@
 package team.studywithme.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,28 +33,28 @@ public class BoardService {
     public BoardResponse matchingBoard(int page, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
-        List<Post> postList = postRepository.findPagePosts(PageRequest.of(page, post_size), board.getId());
+        Page<Post> postPage = postRepository.findPagePosts(PageRequest.of(page, post_size), board.getId());
 
-        return postListToBoardResponse(board, postList);
+        return postPageToBoardResponse(board, postPage.getTotalPages(), postPage.toList());
     }
 
     public BoardResponse matchingMyBoard(int page, Long avatarID, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
-        List<Post> postList = postRepository.findMyPagePosts(PageRequest.of(page, post_size), avatarID, board.getId());
+        Page<Post> postPage = postRepository.findMyPagePosts(PageRequest.of(page, post_size), avatarID, board.getId());
 
-        return postListToBoardResponse(board, postList);
+        return postPageToBoardResponse(board, postPage.getTotalPages(), postPage.toList());
     }
 
     public BoardResponse matchingSearchBoard(int page, String keyword, String boardName){
         Board board = boardRepository.findBoardByName(boardName);
 
-        List<Post> postList = postRepository.findSearchPagePosts(PageRequest.of(page, post_size), keyword, board.getId());
+        Page<Post> postPage = postRepository.findSearchPagePosts(PageRequest.of(page, post_size), keyword, board.getId());
 
-        return postListToBoardResponse(board, postList);
+        return postPageToBoardResponse(board, postPage.getTotalPages(), postPage.toList());
     }
 
-    public BoardResponse postListToBoardResponse(Board board, List<Post> postList){
+    public BoardResponse postPageToBoardResponse(Board board, int totalPage, List<Post> postList){
         Set<Long> idSet = postList.stream().map(post -> post.getAvatar().getId()).collect(Collectors.toSet());
         List<Avatar> avatarList = avatarRepository.findByIdList(idSet);
 
@@ -67,7 +68,7 @@ public class BoardService {
                 post.getAvatar().getId(),
                 avatarMap.get(post.getAvatar().getId()))).collect(Collectors.toList());
 
-        return new BoardResponse(board.getName(), postResponsePage);
+        return new BoardResponse(board.getName(), totalPage, postResponsePage);
     }
 
     public HashMap<Long, String> ListToHashMapForNickname(List<Avatar> avatarList){

@@ -17,6 +17,8 @@ public class BoardDataTest extends UserDataTest {
     @Autowired
     public PostRepository postRepository;
 
+    public final int post_size = 5;
+
     public Board makeBoard(){
         return boardRepository.save(new Board("matching"));
     }

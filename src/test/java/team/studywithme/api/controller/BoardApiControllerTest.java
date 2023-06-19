@@ -66,6 +66,7 @@ class BoardApiControllerTest extends BoardDataTest {
                             preprocessResponse(prettyPrint()),
                             responseFields(
                                     fieldWithPath("name").type(JsonFieldType.STRING).description("게시판의 이름"),
+                                    fieldWithPath("totalPages").type(JsonFieldType.NUMBER).description("게시판의 총 페이지 수"),
 
                                     fieldWithPath("postResponseList[].id").type(JsonFieldType.NUMBER).description("게시물 PK"),
                                     fieldWithPath("postResponseList[].title").type(JsonFieldType.STRING).description("게시물 제목"),
@@ -103,6 +104,7 @@ class BoardApiControllerTest extends BoardDataTest {
                             preprocessResponse(prettyPrint()),
                             responseFields(
                                     fieldWithPath("name").type(JsonFieldType.STRING).description("게시판의 이름"),
+                                    fieldWithPath("totalPages").type(JsonFieldType.NUMBER).description("게시판의 총 페이지 수"),
 
                                     fieldWithPath("postResponseList[].id").type(JsonFieldType.NUMBER).description("게시물 PK"),
                                     fieldWithPath("postResponseList[].title").type(JsonFieldType.STRING).description("게시물 제목"),
@@ -143,6 +145,7 @@ class BoardApiControllerTest extends BoardDataTest {
                             ),
                             responseFields(
                                     fieldWithPath("name").type(JsonFieldType.STRING).description("게시판의 이름"),
+                                    fieldWithPath("totalPages").type(JsonFieldType.NUMBER).description("게시판의 총 페이지 수"),
 
                                     fieldWithPath("postResponseList[].id").type(JsonFieldType.NUMBER).description("게시물 PK"),
                                     fieldWithPath("postResponseList[].title").type(JsonFieldType.STRING).description("게시물 제목"),
