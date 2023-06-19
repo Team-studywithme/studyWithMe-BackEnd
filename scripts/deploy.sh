@@ -3,7 +3,7 @@
 REPOSITORY=/home/ec2-user/studywithmeproject
 cd $REPOSITORY
 
-APP_NAME=cicdproject
+APP_NAME=studywithmeproject
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 
