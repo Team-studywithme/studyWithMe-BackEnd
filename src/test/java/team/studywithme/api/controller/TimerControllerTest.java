@@ -75,7 +75,7 @@ class TimerControllerTest {
         given(timerService.saveMyTimerStartTime(eq(avatar.getId()))).willReturn(new MyTimerResponse(any(LocalTime.class)));
 
         mockMvc.perform(
-                        get("/api/timer/startTimer")
+                        get("/timer/startTimer")
                         .session(session))
                 .andExpect(status().isOk())
                 .andDo(document("timerstart",
@@ -88,7 +88,7 @@ class TimerControllerTest {
     public void endTimerTest() throws Exception {
         given(timerService.saveMyTimerEndTime(eq(avatar.getId()))).willReturn(new MyTimerResponse(any(LocalTime.class)));
 
-        mockMvc.perform(get("/api/timer/quitTimer")
+        mockMvc.perform(get("/timer/quitTimer")
                         .session(session))
                 .andExpect(status().isOk())
                 .andDo(document("timerend",
@@ -99,7 +99,7 @@ class TimerControllerTest {
     @Test
     @DisplayName("[API]공부중인 유저 리스트 불러오기")
     void studyTimerList() throws Exception{
-        mockMvc.perform(get("/api/timer/studyingUserList")
+        mockMvc.perform(get("/timer/studyingUserList")
                 .session(session))
                 .andExpect(status().isOk());
     }
