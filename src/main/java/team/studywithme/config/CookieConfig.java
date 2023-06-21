@@ -14,6 +14,7 @@ public class CookieConfig {
     @Bean
     public CookieSerializer cookieSerializer() throws MalformedURLException {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+        serializer.setUseHttpOnlyCookie(false);
         serializer.setSameSite("None");
         serializer.setUseSecureCookie(true);
         return serializer;
