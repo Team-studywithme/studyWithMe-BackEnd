@@ -26,15 +26,12 @@ public class LocationService {
     @Transactional
     public MyLocationResponse saveMyLocation(Double latitude, Double longitude,Long avatarId){
 
-        /**
         Avatar findAvatar = avatarRepository.findAvatarById(avatarId);
 
         if(findAvatar == null){
             throw new IllegalArgumentException("존재 하지 않는 회원 입니다.");
         }
-        */
 
-        Avatar findAvatar = new Avatar("test1");
         avatarRepository.save(findAvatar);
         locationRepository.save(new Location(findAvatar, latitude, longitude));
 
