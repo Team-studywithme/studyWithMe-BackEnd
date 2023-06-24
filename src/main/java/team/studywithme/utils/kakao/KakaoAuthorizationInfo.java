@@ -13,7 +13,7 @@ public class KakaoAuthorizationInfo {
     @Value("${spring.kakao.id}")
     private String clientId;
 
-    private final String redirectUri = "http://localhost:3000/oauth/callback/kakao";
+    private final String redirectUri = "https://studywithmedeveloper.shop/oauth/callback/kakao";
 
     private final String authorizationGrantType = "authorization_code";
 
