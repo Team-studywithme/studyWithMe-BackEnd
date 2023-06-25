@@ -51,9 +51,13 @@ public class AccountApiController {
 
 
     @DeleteMapping("/account/delete")
-    public ResponseEntity delete(@LoginAvatarId Long avatarId){
+    public ResponseEntity delete(@LoginAvatarId Long avatarId, HttpSession session){
 
         accountService.delete(avatarId);
+
+        if(session != null){
+            session.invalidate();
+        }
 
         return ResponseEntity.ok(null);
     }
