@@ -29,7 +29,7 @@ public class PostApiController {
 
     @PostMapping("/post")
     public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest postRequest,
-                                        @LoginAvatarId Long avatarID){
+                                        @LoginAvatarId final Long avatarID){
         System.out.println("avatarID : " + avatarID);
         postService.createPost(postRequest, avatarID);
         return ResponseEntity.ok(null);
@@ -37,7 +37,7 @@ public class PostApiController {
 
     @PatchMapping("/post")
     public ResponseEntity<?> updatePost(@Valid @RequestBody UpdatePostRequest updatePostRequest,
-                                        @LoginAvatarId Long avatarID){
+                                        @LoginAvatarId final Long avatarID){
 
         System.out.println("avatarID : " + avatarID);
         postService.updatePost(updatePostRequest, avatarID);
@@ -46,7 +46,7 @@ public class PostApiController {
 
     @DeleteMapping("/post")
     public ResponseEntity<?> deletePost(@RequestParam Long postID,
-                                        @LoginAvatarId Long avatarID){
+                                        @LoginAvatarId final Long avatarID){
 
         postService.deletePost(postID, avatarID);
         return ResponseEntity.ok(null);

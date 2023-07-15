@@ -17,7 +17,7 @@ public class LocationApiController {
 
     @PostMapping ("/location/save")
     public ResponseEntity<MyLocationResponse> saveLocation(@RequestBody MyLocationRequest myLocationRequest,
-                                                           @LoginAvatarId Long avatarId){
+                                                           @LoginAvatarId final Long avatarId){
         return ResponseEntity.ok(locationService.saveMyLocation(
                 myLocationRequest.getLatitude(),
                 myLocationRequest.getLongitude(),
