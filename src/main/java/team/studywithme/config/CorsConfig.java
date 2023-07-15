@@ -10,9 +10,11 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowCredentials(true)
-                .allowedOriginPatterns("*");
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowedOriginPatterns("https://www.studywithmedeveloper.shop", "https://studywithmedeveloper.shop")
+                .exposedHeaders("*")
+                .allowCredentials(true);
     }
-
-
 }
+
