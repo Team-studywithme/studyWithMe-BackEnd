@@ -18,7 +18,7 @@ public class CommentApiController {
 
     @PostMapping("/comment")
     public ResponseEntity<?> createComment(@Valid @RequestBody CommentRequest commentRequest,
-                                           @LoginAvatarId Long avatarID){
+                                           @LoginAvatarId final Long avatarID){
 
         commentService.createComment(commentRequest, avatarID);
         return ResponseEntity.ok(null);
@@ -26,7 +26,7 @@ public class CommentApiController {
 
     @PatchMapping("/comment")
     public ResponseEntity<?> updateComment(@Valid @RequestBody UpdateCommentRequest updateCommentRequest,
-                                           @LoginAvatarId Long avatarID){
+                                           @LoginAvatarId final Long avatarID){
 
         commentService.updateComment(updateCommentRequest, avatarID);
         return ResponseEntity.ok(null);
@@ -34,7 +34,7 @@ public class CommentApiController {
 
     @DeleteMapping("/comment")
     public ResponseEntity<?> deleteComment(@RequestParam Long commentID,
-                                           @LoginAvatarId Long avatarID){
+                                           @LoginAvatarId final Long avatarID){
 
         commentService.deleteComment(commentID, avatarID);
         return ResponseEntity.ok(null);

@@ -26,7 +26,7 @@ public class BoardApiController {
 
     @GetMapping("/my_board")
     public ResponseEntity<BoardResponse> myBoard(@RequestParam(value = "page", defaultValue = "0") int page,
-                                               @LoginAvatarId Long avatarId,
+                                               @LoginAvatarId final Long avatarId,
                                                @RequestParam(value = "boardName", defaultValue = "matching") String boardName){
 
         BoardResponse boardResponse = boardService.matchingMyBoard(page, avatarId, boardName);

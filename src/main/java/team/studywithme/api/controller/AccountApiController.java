@@ -43,7 +43,7 @@ public class AccountApiController {
     }
 
     @GetMapping("/account/get")
-    public ResponseEntity<UserResponse> get(@LoginAvatarId Long avatarId){
+    public ResponseEntity<UserResponse> get(@LoginAvatarId final Long avatarId){
         UserResponse userResponse = accountService.get(avatarId);
 
         return ResponseEntity.ok(userResponse);
@@ -51,7 +51,7 @@ public class AccountApiController {
 
 
     @DeleteMapping("/account/delete")
-    public ResponseEntity delete(@LoginAvatarId Long avatarId, HttpSession session){
+    public ResponseEntity delete(@LoginAvatarId final Long avatarId, HttpSession session){
 
         accountService.delete(avatarId);
 

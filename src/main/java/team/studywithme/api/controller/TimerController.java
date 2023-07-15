@@ -21,12 +21,12 @@ public class TimerController {
     private final StudyTimeService studyTimeService;
 
     @GetMapping("/timer/startTimer")
-    public ResponseEntity<MyTimerResponse> startStudyTime(@LoginAvatarId Long avatarId){
+    public ResponseEntity<MyTimerResponse> startStudyTime(@LoginAvatarId final Long avatarId){
         return ResponseEntity.ok(timerService.saveMyTimerStartTime(avatarId));
     }
 
     @GetMapping("/timer/quitTimer")
-    public ResponseEntity<MyTimerResponse> endStudyTime(@LoginAvatarId Long avatarId){
+    public ResponseEntity<MyTimerResponse> endStudyTime(@LoginAvatarId final Long avatarId){
         return ResponseEntity.ok(timerService.saveMyTimerEndTime(avatarId));
     }
 
